@@ -1,25 +1,13 @@
-# 참지마요 — 전체 파이프라인 (ML 모델 + RAG 포함)
-# 배포 대상: Hugging Face Spaces (무료 CPU 16GB RAM)
-# 메모리가 1GB로 제한된 Streamlit Community Cloud에서는 requirements-lite.txt 를 쓰세요.
+# 참지마요 — 경량 구성 (ML 모델 없이 동작)
+#
+# Tier 2 독성 분류 → 어휘 사전 폴백
+# RAG 검색        → 문자 n-gram BM25 폴백
+#
+# Tier 1 정량 지표는 순수 연산이므로 **완전히 동일하게** 동작합니다.
+# 메모리 1GB 제한이 있는 Streamlit Community Cloud 배포용.
 
-# --- UI
 streamlit>=1.36,<2
-
-# --- 데이터 처리
 pandas>=2.0
 numpy>=1.24
-
-# --- Tier 2 독성 분류 (KcELECTRA 계열)
-torch>=2.1,<3
-transformers>=4.40,<5
-
-# --- RAG (임베딩 + 벡터 검색)
-sentence-transformers>=3.0
-faiss-cpu>=1.8
-
-# --- 리포트
 Jinja2>=3.1
 matplotlib>=3.7          # pandas Styler.background_gradient 에 필요
-
-# --- 선택: LLM 문장 보강 (API 키가 있을 때만 동작)
-anthropic>=0.40
