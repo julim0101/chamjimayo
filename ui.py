@@ -4,9 +4,9 @@
 구조: 웹사이트. 상단 고정 네비 + 중앙 정렬 콘텐츠 + 푸터.
       Streamlit 사이드바는 쓰지 않는다.
 
-톤: 단일 다크 테마.
-    배경 #101317, 본문 #E3E6EA (순백 아님 — 눈부심 방지).
-    강조색은 파랑 하나, 나머지는 위험도 신호에만 쓴다.
+톤: 라이트 · 미니멀 테마.
+    배경 #FFFFFF, 본문 #191F28.
+    강조색은 인디고 하나, 나머지는 위험도 신호에만 쓴다.
 
 규칙
   1. 장식하지 않는다. 영문 eyebrow, 대문자 자간 라벨, 마케팅 헤드라인 금지.
@@ -35,23 +35,23 @@ _FONT = (
 CSS = f"""{_FONT}
 <style>
 :root {{
-  /* 다크 · 애시드 (Linear/Raycast 계열) — 팀 시안 A, 살짝 밝게 조정 */
-  --bg:      #16181C;
-  --surf:    #1E2025;
-  --surf-2:  #262930;
-  --line:    #262930;
-  --line-2:  #33363D;
+  /* 라이트 · 미니멀 (Toss 계열) */
+  --bg:      #FFFFFF;
+  --surf:    #F7F8FA;
+  --surf-2:  #F2F4F6;
+  --line:    #E5E8EB;
+  --line-2:  #D1D6DB;
 
-  --fg:      #EDEDEF;
-  --fg-2:    #B7B9C0;
-  --fg-3:    #82858E;
-  --fg-4:    #5B5E66;
+  --fg:      #191F28;
+  --fg-2:    #4E5968;
+  --fg-3:    #8B95A1;
+  --fg-4:    #B0B8C1;
 
-  --accent:  #6E7BFF;
-  --high:    #FF6B60;
-  --mid:     #FFAF3A;
-  --low:     #82858E;
-  --none:    #5B5E66;
+  --accent:  #4F5FE0;
+  --high:    #E03131;
+  --mid:     #D9770A;
+  --low:     #8B95A1;
+  --none:    #B0B8C1;
 
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
@@ -81,7 +81,7 @@ p, div, span, li, label {{ font-size: 14.5px; }}
 /* ───────── 상단 네비 ───────── */
 .nav {{
   position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 100;
-  background: rgba(22,24,28,.88); backdrop-filter: blur(10px);
+  background: rgba(255,255,255,.88); backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
   display: flex; align-items: center; padding: 0 32px;
 }}
