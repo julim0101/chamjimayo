@@ -27,29 +27,35 @@ _FONT = (
     '<link rel="stylesheet" as="style" crossorigin '
     'href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/'
     'variable/pretendardvariable-dynamic-subset.min.css" />'
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+    '<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" '
+    'rel="stylesheet" />'
 )
 
 CSS = f"""{_FONT}
 <style>
 :root {{
-  --bg:      #101317;
-  --surf:    #171B21;
-  --surf-2:  #1D222A;
-  --line:    #252B34;
-  --line-2:  #2E3541;
+  /* 다크 · 애시드 (Linear/Raycast 계열) — 팀 시안 A, 살짝 밝게 조정 */
+  --bg:      #16181C;
+  --surf:    #1E2025;
+  --surf-2:  #262930;
+  --line:    #262930;
+  --line-2:  #33363D;
 
-  --fg:      #E3E6EA;
-  --fg-2:    #A2AAB5;
-  --fg-3:    #6F7885;
-  --fg-4:    #4B535E;
+  --fg:      #EDEDEF;
+  --fg-2:    #B7B9C0;
+  --fg-3:    #82858E;
+  --fg-4:    #5B5E66;
 
-  --accent:  #4C8DFF;
-  --high:    #E5484D;
-  --mid:     #E5A03A;
-  --low:     #7D8794;
-  --none:    #545C68;
+  --accent:  #6E7BFF;
+  --high:    #FF6B60;
+  --mid:     #FFAF3A;
+  --low:     #82858E;
+  --none:    #5B5E66;
 
-  --r: 10px;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --r: 12px;
   --nav-h: 56px;
 }}
 
@@ -75,7 +81,7 @@ p, div, span, li, label {{ font-size: 14.5px; }}
 /* ───────── 상단 네비 ───────── */
 .nav {{
   position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 100;
-  background: rgba(16,19,23,.88); backdrop-filter: blur(10px);
+  background: rgba(22,24,28,.88); backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
   display: flex; align-items: center; padding: 0 32px;
 }}
@@ -112,7 +118,8 @@ div[data-testid="stRadio"].navsel > div {{ pointer-events: auto; }}
 .kpi {{ background: var(--surf); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; }}
 .kpi span {{ display: block; font-size: 13px; color: var(--fg-3); }}
 .kpi b {{ display: block; font-size: 26px; font-weight: 700; letter-spacing: -.035em;
-          margin-top: 6px; font-variant-numeric: tabular-nums; color: var(--fg); }}
+          margin-top: 6px; font-variant-numeric: tabular-nums; color: var(--fg);
+          font-family: var(--font-mono); }}
 .kpi b em {{ font-style: normal; font-size: 13px; font-weight: 500; color: var(--fg-3); margin-left: 3px; }}
 
 /* ───────── 표 ───────── */
@@ -123,7 +130,8 @@ div[data-testid="stRadio"].navsel > div {{ pointer-events: auto; }}
 .tb td {{ padding: 14px 16px; border-bottom: 1px solid var(--line); color: var(--fg-2); vertical-align: middle; }}
 .tb tr:last-child td {{ border-bottom: none; }}
 .tb tr:hover td {{ background: var(--surf-2); }}
-.tb .n {{ font-variant-numeric: tabular-nums; text-align: right; font-weight: 650; color: var(--fg); }}
+.tb .n {{ font-variant-numeric: tabular-nums; text-align: right; font-weight: 650; color: var(--fg);
+          font-family: var(--font-mono); }}
 .tb .idx {{ color: var(--fg-4); font-variant-numeric: tabular-nums; width: 28px; }}
 .tb .nm {{ color: var(--fg); font-weight: 600; }}
 .tb .sub {{ display: block; font-size: 12px; color: var(--fg-4); margin-top: 2px; font-weight: 400; }}
@@ -187,7 +195,7 @@ div[data-testid="stRadio"].navsel > div {{ pointer-events: auto; }}
 .ch .p div b {{ display: block; font-size: 14px; font-weight: 650; color: var(--fg); margin-top: 3px; }}
 .ch .s {{ text-align: right; flex: none; }}
 .ch .s b {{ display: block; font-size: 34px; font-weight: 700; letter-spacing: -.045em;
-            line-height: 1; font-variant-numeric: tabular-nums; }}
+            line-height: 1; font-variant-numeric: tabular-nums; font-family: var(--font-mono); }}
 .ch .s span {{ display: block; font-size: 12.5px; font-weight: 600; margin-top: 5px; }}
 
 /* ───────── 히트맵 ───────── */
@@ -217,7 +225,7 @@ div[data-testid="stRadio"].navsel > div {{ pointer-events: auto; }}
 }}
 .stButton > button:hover {{ border-color: var(--fg-4); background: var(--line); }}
 .stButton > button[kind="primary"], .stDownloadButton > button[kind="primary"] {{
-  background: var(--accent); border-color: var(--accent); color: #fff;
+  background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700;
 }}
 div[data-testid="stExpander"] {{ border: 1px solid var(--line); background: var(--surf); border-radius: var(--r); }}
 div[data-testid="stExpander"] summary {{ font-size: 13.5px; color: var(--fg-2); }}
