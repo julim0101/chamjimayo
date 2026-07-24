@@ -235,7 +235,11 @@ hr {{ border-color: var(--line); margin: 32px 0; }}
 
 
 def inject() -> None:
-    st.markdown(CSS, unsafe_allow_html=True)
+    # 빈 줄이 있으면 일부 markdown 렌더러가 <style> 블록을 조기 종료시켜
+    # CSS 원문이 화면에 그대로 노출되는 문제가 있다 (Streamlit 알려진 이슈).
+    # 사람이 읽기 좋은 원본 포맷은 유지하고, 주입 시점에만 빈 줄을 제거한다.
+    css = "\n".join(line for line in CSS.splitlines() if line.strip())
+    st.markdown(css, unsafe_allow_html=True)
 
 
 # ================================================================ 유틸
