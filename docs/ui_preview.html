@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>참지마요 console</title>
+<style>html,body{margin:0;padding:0} .z{zoom:0.55}</style></head>
+<body><link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+:root {
+  --bg:        #0B0E14;
+  --surf:      #111823;
+  --surf-2:    #17202D;
+  --hair:      #1C2634;
+  --hair-2:    #26313F;
+
+  --fg:        #E6EBF2;
+  --fg-2:      #98A4B4;
+  --fg-3:      #626E7E;
+  --fg-4:      #414C5A;
+
+  --accent:    #58A6FF;
+  --sig-high:  #FF5C5C;
+  --sig-mid:   #F0A020;
+  --sig-low:   #6E7A8A;
+  --sig-none:  #495563;
+
+  --radius: 6px;
+}
+
+html, body, .stApp, [class*="css"], button, input, textarea, select {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+               system-ui, "Segoe UI", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.stApp { background: var(--bg); color: var(--fg); }
+#MainMenu, footer, header[data-testid="stHeader"] { display: none !important; }
+.main .block-container { padding: 34px 44px 120px; max-width: 1400px; }
+::selection { background: var(--accent); color: #fff; }
+
+/* 스크롤바 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--hair-2); border-radius: 9px; }
+
+/* ───────────────────────── 사이드바 ───────────────────────── */
+section[data-testid="stSidebar"] {
+  background: #080B10;
+  border-right: 1px solid var(--hair);
+}
+section[data-testid="stSidebar"] > div { padding-top: 30px; }
+section[data-testid="stSidebar"] * { color: var(--fg-2) !important; }
+section[data-testid="stSidebar"] label { font-size: 13.5px !important; font-weight: 500; }
+section[data-testid="stSidebar"] hr { border-color: var(--hair); margin: 22px 0; }
+section[data-testid="stSidebar"] input,
+section[data-testid="stSidebar"] div[data-baseweb="input"],
+section[data-testid="stSidebar"] div[data-baseweb="select"] > div {
+  background: var(--surf) !important;
+  border-color: transparent !important;
+  border-radius: 10px !important;
+  color: var(--fg) !important;
+}
+
+.brand { margin-bottom: 28px; }
+.brand-n {
+  font-size: 21px; font-weight: 800; letter-spacing: -.035em;
+  color: var(--fg) !important;
+}
+.brand-s {
+  font-size: 11.5px; font-weight: 500; color: var(--fg-3) !important;
+  margin-top: 4px; letter-spacing: -.005em;
+}
+.side-l {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .14em;
+  color: var(--fg-4) !important; margin: 0 0 10px; text-transform: uppercase;
+}
+
+/* ───────────────────────── 헤드 ───────────────────────── */
+.hd { margin-bottom: 44px; }
+.hd-eb {
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 12px;
+}
+.hd h1 {
+  margin: 0; font-weight: 800; color: var(--fg);
+  font-size: 32px;
+  letter-spacing: -.035em;
+  line-height: 1.18;
+}
+.hd p {
+  margin: 12px 0 0;
+  color: var(--fg-3); line-height: 1.7;
+  font-size: 14.5px;
+  max-width: 70ch;
+  font-weight: 400;
+}
+
+/* ───────────────────────── 섹션 ───────────────────────── */
+.sec { margin: 56px 0 20px; }
+.sec h3 {
+  margin: 0; color: var(--fg); font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -.02em;
+}
+.sec p {
+  margin: 8px 0 0; color: var(--fg-3);
+  font-size: 13.5px; line-height: 1.7;
+  max-width: 78ch; font-weight: 400;
+}
+
+/* ───────────────────────── KPI ───────────────────────── */
+.kpi {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--hair);
+  border-radius: var(--radius); overflow: hidden;
+}
+.kpi > div {
+  background: var(--surf);
+  padding: 20px 22px;
+  border-radius: 0;
+}
+.kpi-l {
+  font-size: 11.5px; font-weight: 600;
+  color: var(--fg-3); letter-spacing: -.01em;
+}
+.kpi-v {
+  font-size: 34px; font-weight: 800;
+  letter-spacing: -.045em; color: var(--fg); line-height: 1.1;
+  margin-top: 8px; font-variant-numeric: tabular-nums;
+}
+.kpi-v em { font-style: normal; font-size: .45em; font-weight: 700; color: var(--fg-3); margin-left: 2px; }
+
+/* ───────────────────────── 사건 목록 (console) ───────────────────────── */
+.rows { margin-top: 4px; }
+.rh, .row {
+  display: grid; align-items: center;
+  grid-template-columns: 30px minmax(0,1fr) 130px 66px 74px minmax(0,1.15fr) 96px;
+  gap: 18px; padding: 0 12px;
+}
+.rh {
+  height: 34px; font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--fg-4); border-bottom: 1px solid var(--hair);
+}
+.row {
+  height: 62px; border-bottom: 1px solid var(--hair);
+  transition: background .12s ease; border-radius: var(--radius);
+}
+.row:hover { background: var(--surf); }
+.row-k { font-size: 13px; font-weight: 700; color: var(--fg-4); font-variant-numeric: tabular-nums; }
+.row.first .row-k { color: var(--accent); }
+.row-n { min-width: 0; }
+.row-n b {
+  display: block; font-size: 14.5px; font-weight: 650; color: var(--fg);
+  letter-spacing: -.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.row-n span { font-size: 11.5px; color: var(--fg-4); font-variant-numeric: tabular-nums; }
+.row-v {
+  font-size: 16px; font-weight: 750; font-variant-numeric: tabular-nums;
+  letter-spacing: -.03em; text-align: right;
+}
+.trk { height: 3px; background: var(--hair-2); border-radius: 9px; overflow: hidden; }
+.trk i { display: block; height: 100%; border-radius: 9px; }
+.pill {
+  display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: -.01em;
+  padding: 4px 10px; border-radius: 99px; white-space: nowrap;
+}
+.flg { display: flex; flex-wrap: wrap; gap: 4px; }
+.flg em {
+  font-style: normal; font-size: 10.5px; font-weight: 600; color: var(--fg-2);
+  background: var(--surf-2); padding: 3px 7px; border-radius: 5px; white-space: nowrap;
+}
+.dash { color: var(--fg-4); }
+
+/* ───────────────────────── 요건 ───────────────────────── */
+.reqs {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--hair);
+  border-radius: var(--radius); overflow: hidden;
+}
+.req {
+  background: var(--surf);
+  padding: 24px 24px 26px;
+  border-radius: 0;
+}
+.req-c {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .13em;
+  color: var(--fg-4); text-transform: uppercase;
+}
+.req-t {
+  font-size: 14px; font-weight: 650; color: var(--fg-2);
+  margin-top: 8px; line-height: 1.5; letter-spacing: -.015em;
+  min-height: 42px;
+}
+.req-v {
+  font-size: 46px; font-weight: 800; letter-spacing: -.05em;
+  line-height: 1; margin: 20px 0 16px;
+  font-variant-numeric: tabular-nums;
+}
+.req-b { margin-bottom: 16px; }
+.req-l {
+  font-size: 11.5px; color: var(--fg-4); line-height: 1.6; letter-spacing: -.005em;
+}
+
+/* 지표 행 */
+.mt { margin-top: 2px; }
+.mt-r {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 13px 0; border-bottom: 1px solid var(--hair);
+}
+.mt-r:last-child { border-bottom: none; }
+.mt-l { font-size: 13.5px; color: var(--fg-2); letter-spacing: -.012em; }
+.mt-n { font-size: 11.5px; color: var(--fg-4); margin-top: 3px; line-height: 1.5; }
+.mt-v {
+  font-size: 14.5px; font-weight: 700; color: var(--fg); white-space: nowrap;
+  font-variant-numeric: tabular-nums; letter-spacing: -.02em;
+}
+
+/* ───────────────────────── 증거 ───────────────────────── */
+.ev {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--hair);
+}
+.ev:first-child { padding-top: 4px; }
+.ev-m {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  font-size: 11.5px; color: var(--fg-4); font-variant-numeric: tabular-nums;
+}
+.ev-m b { color: var(--fg-3); font-weight: 600; }
+.ev-q {
+  font-size: 16px; line-height: 1.65; color: var(--fg);
+  font-weight: 450; letter-spacing: -.018em;
+}
+.ev-t { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 5px; }
+.ev-t em {
+  font-style: normal; font-size: 10.5px; font-weight: 650; padding: 3.5px 8px;
+  border-radius: 5px; letter-spacing: -.005em;
+}
+
+/* 먹칠 */
+.rd {
+  display: inline-block; background: var(--fg); color: var(--bg);
+  border-radius: 3px; padding: 0 .34em; font-size: .8em; font-weight: 700;
+  letter-spacing: .02em; vertical-align: baseline; margin: 0 .06em;
+}
+
+/* ───────────────────────── 인용 ───────────────────────── */
+.ct { padding: 18px 0; border-bottom: 1px solid var(--hair); }
+.ct:last-child { border-bottom: none; }
+.ct-h { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+.ct-s { font-size: 14.5px; font-weight: 700; color: var(--fg); letter-spacing: -.02em; }
+.ct-t { font-size: 13px; color: var(--fg-3); margin-top: 3px; }
+.ct-b {
+  font-size: 13.5px; color: var(--fg-2); line-height: 1.75; margin-top: 10px;
+  letter-spacing: -.008em;
+}
+
+/* ───────────────────────── 알림 ───────────────────────── */
+.note {
+  border-radius: var(--radius); padding: 16px 18px;
+  font-size: 13.5px; line-height: 1.7; margin-bottom: 14px;
+  background: var(--surf); color: var(--fg-2); font-weight: 450;
+}
+.note b { color: var(--fg); font-weight: 700; }
+.note.warn { box-shadow: inset 3px 0 0 var(--sig-mid); }
+.note.info { box-shadow: inset 3px 0 0 var(--accent); }
+.note.ok   { box-shadow: inset 3px 0 0 var(--sig-low); }
+
+/* ───────────────────────── 사건 헤더 ───────────────────────── */
+.ch {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 40px; padding: 26px 28px; background: var(--surf);
+  border-radius: var(--radius); margin-bottom: 8px;
+}
+.ch h2 { margin: 0; font-size: 22px; font-weight: 750; letter-spacing: -.032em; color: var(--fg); }
+.ch-m { margin-top: 8px; font-size: 12.5px; color: var(--fg-3); font-variant-numeric: tabular-nums; }
+.ch-p { display: flex; gap: 34px; margin-top: 22px; }
+.ch-p div span { display: block; font-size: 11px; color: var(--fg-4); font-weight: 600; }
+.ch-p div b { display: block; font-size: 15px; font-weight: 700; color: var(--fg); margin-top: 4px; letter-spacing: -.02em; }
+.ch-s { text-align: right; flex: none; }
+.ch-s .v { font-size: 54px; font-weight: 800; letter-spacing: -.055em; line-height: 1; font-variant-numeric: tabular-nums; }
+.ch-s .l { font-size: 13px; font-weight: 700; margin-top: 6px; }
+
+/* ───────────────────────── 큰 점수 (soft) ───────────────────────── */
+.score {
+  background: var(--surf); border-radius: var(--radius);
+  padding: 40px 36px; margin-bottom: 12px;
+}
+.score-v { font-size: 76px; font-weight: 800; letter-spacing: -.055em; line-height: 1; font-variant-numeric: tabular-nums; }
+.score-l { font-size: 19px; font-weight: 750; margin-top: 10px; letter-spacing: -.03em; }
+.score-d { font-size: 15px; color: var(--fg-3); margin-top: 10px; line-height: 1.65; font-weight: 500; }
+.score-g { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px 32px; margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--hair-2); }
+.score-g span { display: block; font-size: 13px; color: var(--fg-3); font-weight: 500; }
+.score-g b { display: block; font-size: 17px; font-weight: 700; margin-top: 4px; letter-spacing: -.025em; color: var(--fg); }
+
+/* ───────────────────────── 히트맵 ───────────────────────── */
+.hm td.c { width: 19px; height: 19px; border-radius: 3px; }
+.hm td.d { font-size: 11px; color: var(--fg-4); padding-right: 9px; text-align: right; font-weight: 600; }
+.hm th.h { font-size: 10px; color: var(--fg-4); padding-bottom: 6px; font-weight: 600; }
+.hm table { border-collapse: separate; border-spacing: 3px; }
+.hm-lg { display: flex; align-items: center; gap: 7px; margin-top: 16px; font-size: 11.5px; color: var(--fg-3); }
+.hm-lg i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+/* ───────────────────────── Streamlit 위젯 ───────────────────────── */
+.stTabs [data-baseweb="tab-list"] { gap: 4px; border-bottom: 1px solid var(--hair); }
+.stTabs [data-baseweb="tab"] {
+  height: 40px; padding: 0 14px; font-size: 13.5px; font-weight: 600;
+  color: var(--fg-3); background: transparent; border: none; letter-spacing: -.015em;
+}
+.stTabs [aria-selected="true"] { color: var(--fg) !important; font-weight: 700; }
+.stTabs [data-baseweb="tab-highlight"] { background: var(--accent); height: 2px; }
+.stTabs [data-baseweb="tab-panel"] { padding-top: 22px; }
+
+.stButton > button, .stDownloadButton > button {
+  border-radius: 8px; font-weight: 700; font-size: 14.5px;
+  padding: 11px 20px;
+  border: 1px solid var(--hair-2); background: var(--surf); color: var(--fg);
+  letter-spacing: -.02em; transition: all .13s ease;
+}
+.stButton > button:hover { background: var(--surf-2); border-color: var(--fg-4); }
+.stButton > button[kind="primary"], .stDownloadButton > button[kind="primary"] {
+  background: var(--accent); border-color: var(--accent);
+  color: #06121F;
+}
+.stButton > button[kind="primary"]:hover { filter: brightness(1.08); }
+
+div[data-testid="stExpander"] {
+  border: none; background: var(--surf); border-radius: var(--radius);
+}
+div[data-testid="stExpander"] summary { font-size: 13.5px; font-weight: 600; color: var(--fg-2); }
+div[data-testid="stFileUploader"] section {
+  border: 1.5px dashed var(--hair-2); border-radius: var(--radius);
+  background: var(--surf); padding: 26px;
+}
+div[data-testid="stDataFrame"] { border-radius: var(--radius); overflow: hidden; }
+div[data-testid="stTextInput"] input {
+  background: var(--surf); border: 1px solid var(--hair-2); border-radius: 12px;
+  color: var(--fg); font-size: 15px; padding: 12px 14px;
+}
+.stRadio [role="radiogroup"] { gap: 10px; }
+.stRadio label { font-size: 14px !important; }
+hr { border-color: var(--hair); margin: 40px 0; }
+.stProgress > div > div > div { background: var(--accent); }
+</style><div class="stApp z" style="min-height:100vh"><div class="main"><div class="block-container"><div class="hd"><div class="hd-eb">Investigator Console</div><h1>수만 줄의 대화에서,<br>먼저 볼 사건을 가려냅니다</h1><p>근로기준법 제76조의2 성립요건을 정량 지표로 환산해 조사 우선순위를 산출합니다. 판정은 하지 않습니다 — 판단에 필요한 자료를 정리할 뿐입니다.</p></div><div class="sec"><h3>분석 결과</h3></div><div class="kpi"><div><div class="kpi-l">분석 사건</div><div class="kpi-v">5<em>건</em></div></div><div><div class="kpi-l">고위험</div><div class="kpi-v">2<em>건</em></div></div><div><div class="kpi-l">3요건 충족</div><div class="kpi-v">3<em>건</em></div></div><div><div class="kpi-l">별건 위반 단서</div><div class="kpi-v">8<em>건</em></div></div></div><div class="sec"><h3>조사 우선순위</h3><p>우선순위 = 괴롭힘 성립 가능성 + 별건 법위반의 중대성. 괴롭힘 점수가 낮아도 임금체불·신고자 보복처럼 그 자체로 형사처벌 대상인 단서가 있으면 순위가 올라갑니다.</p></div><div class="rows"><div class="rh"><div>#</div><div>사건</div><div>우선순위</div><div></div><div>판정</div><div>별건 위반</div><div>기간</div></div><div class="row first"><div class="row-k">1</div><div class="row-n"><b>에이블 디자인 업무방</b><span>CJ-AAC61B · 50건</span></div><div><div class="trk"><i style="width:100.0%;background:var(--sig-mid)"></i></div></div><div class="row-v" style="color:var(--sig-mid)">1.00</div><div><span class="pill" style="background:var(--sig-mid)1F;color:var(--sig-mid)">중간</span></div><div class="flg"><em>연장·휴일근로수당 미지급</em><em>임금 미지급·감액</em><em>+2</em></div><div class="row-n"><span>25.03.03–25.04.18</span></div></div><div class="row "><div class="row-k">2</div><div class="row-n"><b>3병동 프리셉터방</b><span>CJ-EC830B · 58건</span></div><div><div class="trk"><i style="width:95.3%;background:var(--sig-high)"></i></div></div><div class="row-v" style="color:var(--sig-high)">0.95</div><div><span class="pill" style="background:var(--sig-high)1F;color:var(--sig-high)">높음</span></div><div class="flg"><em>신고자 불이익 처우</em><em>직장 내 괴롭힘 조치의무 위반</em></div><div class="row-n"><span>25.05.12–25.06.20</span></div></div><div class="row "><div class="row-k">3</div><div class="row-n"><b>[마케팅팀] 강부장님</b><span>CJ-816B23 · 55건</span></div><div><div class="trk"><i style="width:94.6%;background:var(--sig-high)"></i></div></div><div class="row-v" style="color:var(--sig-high)">0.95</div><div><span class="pill" style="background:var(--sig-high)1F;color:var(--sig-high)">높음</span></div><div class="flg"><em>근로시간 위반</em><em>신고자 불이익 처우</em></div><div class="row-n"><span>25.04.07–25.05.09</span></div></div><div class="row "><div class="row-k">4</div><div class="row-n"><b>영업3팀 업무공유방</b><span>CJ-B76F84 · 45건</span></div><div><div class="trk"><i style="width:9.6%;background:var(--sig-none)"></i></div></div><div class="row-v" style="color:var(--sig-none)">0.10</div><div><span class="pill" style="background:var(--sig-none)1F;color:var(--sig-none)">관측 없음</span></div><div class="flg"><span class="dash">—</span></div><div class="row-n"><span>25.04.02–25.05.02</span></div></div><div class="row "><div class="row-k">5</div><div class="row-n"><b>[기획2팀] 이팀장님</b><span>CJ-F47095 · 31건</span></div><div><div class="trk"><i style="width:5.5%;background:var(--sig-none)"></i></div></div><div class="row-v" style="color:var(--sig-none)">0.06</div><div><span class="pill" style="background:var(--sig-none)1F;color:var(--sig-none)">관측 없음</span></div><div class="flg"><span class="dash">—</span></div><div class="row-n"><span>25.04.07–25.05.02</span></div></div></div><div class="sec"><h3>사람의 검토가 필요한 사건 · 1건</h3><p>정량 지표는 낮지만 맥락상 정황이 관측된 사건입니다.</p></div><div class="note warn"><b>영업3팀 업무공유방</b> · CJ-B76F84 — 위험도 0.10<br>정량 지표는 낮으나(0.10) 정황 후보 6건 관측 — 가스라이팅, 업무 배제, 의견 묵살 / 선택적 무응답 격차 22%p(대상자 58% vs 동료 80%)</div><div class="sec"><h3>사건 상세</h3></div><div class="ch"><div><h2>3병동 프리셉터방</h2><div class="ch-m">CJ-EC830B · 2025.05.12–2025.06.20 · 40일 · 메시지 58건 · 참여자 2명</div><div class="ch-p"><div><span>행위 의심자</span><b><span class="rd" style="min-width:4.34em">A</span></b></div><div><span>피해 의심 대상자</span><b><span class="rd" style="min-width:1.86em">B</span></b></div><div><span>3요건 동시 충족</span><b>충족</b></div><div><span>조사 우선순위</span><b>0.95</b></div></div></div><div class="ch-s"><div class="v" style="color:var(--sig-high)">0.69</div><div class="l" style="color:var(--sig-high)">높음</div></div></div><div style="height:22px"></div><div class="reqs"><div class="req"><div class="req-c">요건 1</div><div class="req-t">지위 또는 관계의 우위</div><div class="req-v" style="color:var(--sig-high)">0.70</div><div class="req-b"><div class="trk"><i style="width:70.2%;background:var(--sig-high)"></i></div></div><div class="req-l">「직장에서의 지위 또는 관계 등의 우위를 이용하여」</div></div><div class="req"><div class="req-c">요건 2</div><div class="req-t">업무상 적정범위를 넘는 행위</div><div class="req-v" style="color:var(--sig-high)">0.66</div><div class="req-b"><div class="trk"><i style="width:65.8%;background:var(--sig-high)"></i></div></div><div class="req-l">「업무상 적정범위를 넘어」</div></div><div class="req"><div class="req-c">요건 3</div><div class="req-t">신체적·정신적 고통 또는 근무환경 악화</div><div class="req-v" style="color:var(--sig-high)">0.72</div><div class="req-b"><div class="trk"><i style="width:71.8%;background:var(--sig-high)"></i></div></div><div class="req-l">「신체적·정신적 고통을 주거나 근무환경을 악화시키는 행위」</div></div></div><div style="height:18px"></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:30px"><div><div class="mt"><div class="mt-r"><div><div class="mt-l">발화 독점률 (건수)</div><div class="mt-n">전체 58건 중 47건을 화자 A가 발화</div></div><div class="mt-v">81.0%</div></div><div class="mt-r"><div><div class="mt-l">발화 독점률 (분량)</div><div class="mt-n">글자 수 기준 점유율</div></div><div class="mt-v">86.6%</div></div><div class="mt-r"><div><div class="mt-l">지시 발화 비대칭</div><div class="mt-n">화자 A 17% vs 상대 0%</div></div><div class="mt-v">17.0%</div></div><div class="mt-r"><div><div class="mt-l">사과·수용 표현 비대칭</div><div class="mt-n">대상자 55% vs 화자 A 9%</div></div><div class="mt-v">46.0%</div></div><div class="mt-r"><div><div class="mt-l">일방적 연속 발화 비율</div><div class="mt-n">상대 응답 없이 3회 이상 연속 발화</div></div><div class="mt-v">93.6%</div></div><div class="mt-r"><div><div class="mt-l">응답 지연 격차</div><div class="mt-n">대상자가 더 빨리 응답할수록 응답 압박이 크다</div></div><div class="mt-v">-16.00분</div></div></div></div><div><div class="mt"><div class="mt-r"><div><div class="mt-l">근무시간 외 발화 비율</div><div class="mt-n">화자 A의 발화 47건 중 42건이 근무시간 외</div></div><div class="mt-v">89.4%</div></div><div class="mt-r"><div><div class="mt-l">주당 시간외 지시·응답요구</div><div class="mt-n">관찰 40일간 총 15건</div></div><div class="mt-v">2.62회/주</div></div><div class="mt-r"><div><div class="mt-l">주당 심야(22–06시) 연락</div><div class="mt-n">총 13건</div></div><div class="mt-v">2.27회/주</div></div><div class="mt-r"><div><div class="mt-l">주당 휴일 연락</div><div class="mt-n">총 7건</div></div><div class="mt-v">1.22회/주</div></div><div class="mt-r"><div><div class="mt-l">시간외 연락 발생일 비율</div><div class="mt-n">관찰 40일 중 9일에 발생</div></div><div class="mt-v">22.5%</div></div><div class="mt-r"><div><div class="mt-l">반복 주기의 규칙성</div><div class="mt-n">간격의 변동이 작을수록 일회성이 아닌 지속적 패턴</div></div><div class="mt-v">0.33</div></div></div></div><div><div class="mt"><div class="mt-r"><div><div class="mt-l">모욕·독성 발화 밀도</div><div class="mt-n">화자 A의 발화 47건 중 22건이 독성 임계치 초과</div></div><div class="mt-v">46.8%</div></div><div class="mt-r"><div><div class="mt-l">평균 독성 확률</div><div class="mt-n">0에 가까울수록 중립, 1에 가까울수록 공격적</div></div><div class="mt-v">0.34</div></div><div class="mt-r"><div><div class="mt-l">주당 질책성 추궁</div><div class="mt-n">총 11건</div></div><div class="mt-v">1.93회/주</div></div><div class="mt-r"><div><div class="mt-l">제3자 노출 여부</div><div class="mt-n">참여자 2명 — 공개적 질책은 정신적 고통을 가중</div></div><div class="mt-v">0.00</div></div><div class="mt-r"><div><div class="mt-l">대상자의 시간외 응답 부담</div></div><div class="mt-v">90.9%</div></div><div class="mt-r"><div><div class="mt-l">정황 후보 발화 (Tier 3)</div><div class="mt-n">배제·묵살·가스라이팅 의심 — 최종 판단은 사람</div></div><div class="mt-v">9건</div></div></div></div></div><div class="sec"><h3>증거</h3></div><div class="ev"><div class="ev-m"><b>2025.05.12 08:55</b><span>#4</span></div><div class="ev-q">아까 라운딩 때 그게 인계야? 3년차 신규가 그것도 못해?</div><div class="ev-t"><em style="background:var(--sig-high)1A;color:var(--sig-high)">독성 0.91</em><em style="background:var(--sig-high)1A;color:var(--sig-high)">질책성 추궁</em></div></div><div class="ev"><div class="ev-m"><b>2025.05.13 22:49</b><span>#14</span></div><div class="ev-q">내일 아침에 나한테 왜 그랬는지 설명해. 자기 전에 오늘 뭐 잘못했는지 다섯 개 적어서 보내</div><div class="ev-t"><em style="background:var(--sig-high)1A;color:var(--sig-high)">근무시간 외 지시</em><em style="background:var(--sig-high)1A;color:var(--sig-high)">심야 연락</em><em style="background:var(--sig-high)1A;color:var(--sig-high)">질책성 추궁</em></div></div><div class="ev"><div class="ev-m"><b>2025.05.13 23:33</b><span>#17</span></div><div class="ev-q">너는 진짜 답이 없다. 이래서 요즘 애들이 안된다는 거야</div><div class="ev-t"><em style="background:var(--sig-high)1A;color:var(--sig-high)">독성 0.96</em><em style="background:var(--sig-high)1A;color:var(--sig-high)">심야 연락</em></div></div><div class="sec"><h3>정황 후보</h3></div><div class="ev"><div class="ev-m"><b>2025.04.02 11:48</b><span>#6</span></div><div class="ev-q">아 <span class="rd" style="min-width:1.86em">B</span>씨는 오늘 그 자료 마감이지 않았나? 무리하지 말고 편할 대로 해요</div><div class="ev-t"><em style="background:var(--sig-mid)1A;color:var(--sig-mid)">업무 배제</em></div></div><div class="ev"><div class="ev-m"><b>2025.04.08 09:20</b><span>#11</span></div><div class="ev-q">이번 B사 프로젝트는 <span class="rd" style="min-width:1.86em">C</span>랑 <span class="rd" style="min-width:1.86em">D</span>이 메인으로 가죠. 둘이 호흡이 좋으니까</div><div class="ev-t"><em style="background:var(--sig-mid)1A;color:var(--sig-mid)">업무 배제</em></div></div><div class="sec"><h3>시간 패턴</h3></div><div class="hm"><table><tr><th></th><th class="h">0</th><th class="h"></th><th class="h"></th><th class="h"></th><th class="h"></th><th class="h"></th><th class="h">6</th><th class="h"></th><th class="h"></th><th class="h"></th><th class="h"></th><th class="h"></th><th class="h">12</th><th class="h"></th><th class="h"></th><th class="h"></th><th class="h"></th><th class="h"></th><th class="h">18</th><th class="h"></th><th class="h"></th><th class="h"></th><th class="h"></th><th class="h"></th></tr><tr><td class="d">월</td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,92,92,1.00)"></td><td class="c" style="background:rgba(255,92,92,0.90)"></td><td class="c" style="background:rgba(88,166,255,0.40)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(88,166,255,0.50)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,92,92,0.50)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td></tr><tr><td class="d">화</td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,92,92,0.50)"></td><td class="c" style="background:rgba(255,92,92,0.50)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,92,92,0.50)"></td><td class="c" style="background:rgba(255,92,92,0.80)"></td></tr><tr><td class="d">수</td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td></tr><tr><td class="d">목</td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td></tr><tr><td class="d">금</td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,92,92,0.80)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(88,166,255,0.50)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,92,92,0.70)"></td></tr><tr><td class="d">토</td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,92,92,0.50)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,92,92,0.50)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td></tr><tr><td class="d">일</td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,92,92,0.60)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td><td class="c" style="background:rgba(255,255,255,.035)"></td></tr></table><div class="hm-lg"><i style="background:rgba(88,166,255,.9)"></i>근무시간 내<i style="background:rgba(255,92,92,.9);margin-left:14px"></i>근무시간 외<span style="margin-left:14px;color:var(--fg-4)">최대 7건</span></div></div></div></div></div></body></html>

@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.DS_Store
+.idea/
+.vscode/
+
+# 임베딩 인덱스 캐시 (build_index로 재생성)
+data/index/
+
+# 모델 캐시
+.cache/
+*.pt
+*.bin
+*.safetensors
+
+# 업로드된 실제 대화 — 절대 커밋 금지
+data/uploads/
+*_실제*.txt
+
+# 생성된 산출물
+assets/qr_demo*.png
+outputs/

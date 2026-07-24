@@ -1,0 +1,357 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>참지마요 — 스타일 3안</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><style>
+*{box-sizing:border-box}
+body{margin:0;background:#111;font-family:'Pretendard Variable',Pretendard,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:0 0 80px}
+.nav{position:sticky;top:0;z-index:9;background:#000;color:#fff;padding:16px 30px;
+  font:600 13px/1 'Pretendard Variable',sans-serif;letter-spacing:.02em}
+.nav a{color:#888;text-decoration:none;margin-left:18px}
+.nav a:hover{color:#fff}
+.cap{color:#777;font:700 11px/1 'JetBrains Mono',monospace;letter-spacing:.18em;padding:44px 30px 14px}
+.cap b{color:#fff;font-size:15px;font-family:'Pretendard Variable';letter-spacing:0;margin-right:10px}
+.frame{margin:0 30px;overflow:hidden;border-radius:14px}
+
+/* ══════ A ══════ */
+.A{background:#0A0A0B;color:#EDEDEF;padding:56px 52px 64px;font-size:14px}
+.A .eb{font:700 11px/1 'JetBrains Mono',monospace;letter-spacing:.22em;color:#C6F24E;margin-bottom:18px}
+.A h1{margin:0 0 46px;font-size:46px;font-weight:800;letter-spacing:-.045em;line-height:1.14;color:#fff}
+.A h1 b{color:#C6F24E;font-weight:800}
+.A .big{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #232327;
+  border-bottom:1px solid #232327;padding:26px 0;margin-bottom:44px}
+.A .bn{font-size:44px;font-weight:800;letter-spacing:-.05em;color:#fff;line-height:1}
+.A .bn sup{font-size:18px;font-weight:700;color:#6B6B75;top:-14px;margin-left:2px}
+.A .bl{font-size:12px;color:#75757F;margin-top:8px;font-weight:500}
+.A .tbl{display:flex;flex-direction:column}
+.A .ra{display:grid;grid-template-columns:34px 1fr 180px 54px 60px 1fr;align-items:center;gap:16px;
+  padding:15px 0;border-bottom:1px solid #1A1A1E}
+.A .ra.hot{background:linear-gradient(90deg,rgba(198,242,78,.07),transparent 60%)}
+.A .rk{font:700 13px 'JetBrains Mono',monospace;color:#55555E}
+.A .ra.hot .rk{color:#C6F24E}
+.A .rm b{display:block;font-size:14px;font-weight:650;color:#fff}
+.A .rm span{font:500 11px 'JetBrains Mono',monospace;color:#5A5A64}
+.A .rb{height:4px;background:#1E1E22;border-radius:9px;overflow:hidden}
+.A .rb i{display:block;height:100%;background:#C6F24E;border-radius:9px}
+.A .rn{font:700 15px 'JetBrains Mono',monospace;color:#fff;text-align:right}
+.A .rl{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;text-align:center}
+.A .rl.h{background:rgba(255,69,58,.16);color:#FF6B60}
+.A .rl.m{background:rgba(255,159,10,.16);color:#FFAF3A}
+.A .rl.n{background:#1C1C20;color:#6B6B75}
+.A .rw em{font-style:normal;font-size:10.5px;color:#9BA05E;background:rgba(198,242,78,.09);
+  padding:3px 7px;border-radius:5px;margin-right:5px}
+.A .rw s{color:#3A3A42;text-decoration:none}
+.A .sec{font:700 11px 'JetBrains Mono',monospace;letter-spacing:.2em;color:#55555E;margin:52px 0 20px}
+.A .rqs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.A .rq{background:#141417;border-radius:12px;padding:22px}
+.A .rq span{font:700 10px 'JetBrains Mono',monospace;color:#C6F24E;letter-spacing:.14em}
+.A .rq h4{margin:8px 0 0;font-size:13.5px;font-weight:600;color:#B4B4BE;line-height:1.45;min-height:38px}
+.A .rqn{font-size:38px;font-weight:800;letter-spacing:-.05em;color:#fff;margin:14px 0 12px}
+.A .rqb{height:3px;background:#232327;border-radius:9px}
+.A .rqb i{display:block;height:100%;background:#C6F24E;border-radius:9px}
+.A .ev{background:#141417;border-radius:12px;padding:18px 20px;margin-bottom:9px}
+.A .evm{font:500 11px 'JetBrains Mono',monospace;color:#55555E;margin-bottom:9px}
+.A .ev p{margin:0;font-size:15px;line-height:1.6;color:#EDEDEF;font-weight:450}
+.A .evt{margin-top:11px}
+.A .evt em{font-style:normal;font-size:10.5px;color:#FF6B60;background:rgba(255,69,58,.1);
+  padding:3px 8px;border-radius:5px;margin-right:5px}
+
+/* ══════ B ══════ */
+.B{background:#fff;color:#191F28;padding:60px 56px 70px;font-size:15px}
+.B .hd em{font-style:normal;font:700 13px/1 'Pretendard Variable';color:#3182F6;letter-spacing:-.01em}
+.B h1{margin:12px 0 0;font-size:38px;font-weight:800;letter-spacing:-.04em;color:#191F28}
+.B .hd p{margin:10px 0 0;color:#8B95A1;font-size:16px;font-weight:500}
+.B .hero{background:#F2F4F6;border-radius:20px;padding:30px 32px;margin:38px 0 34px;
+  display:flex;align-items:center;gap:28px}
+.B .hn{font-size:64px;font-weight:800;letter-spacing:-.055em;color:#FF3B30;line-height:1}
+.B .hm b{display:block;font-size:19px;font-weight:700;letter-spacing:-.02em}
+.B .hm span{display:block;color:#8B95A1;font-size:14px;margin-top:6px;font-weight:500}
+.B .list{display:flex;flex-direction:column}
+.B .rw{display:grid;grid-template-columns:26px 1fr 210px 52px;align-items:center;gap:18px;
+  padding:17px 4px;border-bottom:1px solid #F2F4F6}
+.B .k{font-size:14px;font-weight:700;color:#B0B8C1}
+.B .nm b{display:block;font-size:16px;font-weight:650;letter-spacing:-.02em}
+.B .nm em{font-style:normal;font-size:12.5px;color:#8B95A1;font-weight:500}
+.B .bar{height:6px;background:#F2F4F6;border-radius:9px;overflow:hidden}
+.B .bar i{display:block;height:100%;border-radius:9px}
+.B .v{font-size:17px;font-weight:800;text-align:right;letter-spacing:-.03em}
+.B h3{margin:46px 0 16px;font-size:20px;font-weight:750;letter-spacing:-.03em}
+.B .rqs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.B .rq{background:#F9FAFB;border-radius:16px;padding:24px}
+.B .rq em{font-style:normal;font-size:12px;font-weight:700;color:#3182F6}
+.B .rq h4{margin:7px 0 0;font-size:14px;font-weight:600;color:#4E5968;line-height:1.45;min-height:40px}
+.B .rq .n{font-size:40px;font-weight:800;letter-spacing:-.05em;margin:12px 0 10px}
+.B .rq .b{height:5px;background:#E5E8EB;border-radius:9px}
+.B .rq .b i{display:block;height:100%;background:#3182F6;border-radius:9px}
+.B .ev{padding:20px 0;border-bottom:1px solid #F2F4F6}
+.B .ev p{margin:0;font-size:16.5px;line-height:1.62;font-weight:500;letter-spacing:-.015em}
+.B .ev .m{margin-top:9px;font-size:12.5px;color:#8B95A1;font-weight:500}
+.B .ev .m span{color:#FF3B30;margin-left:10px}
+
+/* ══════ C ══════ */
+.C{background:#FCFCFA;color:#0D0D0D;padding:0 0 70px;font-size:14px}
+.C .hd{background:#0D0D0D;color:#fff;padding:52px 52px 46px}
+.C .tag{display:inline-block;background:#E8FF52;color:#0D0D0D;font-size:11px;font-weight:800;
+  padding:5px 11px;letter-spacing:.02em;margin-bottom:22px}
+.C h1{margin:0;font-size:56px;font-weight:850;letter-spacing:-.05em;line-height:1.06}
+.C h1 mark{background:#E8FF52;color:#0D0D0D;padding:0 8px}
+.C .stat{display:grid;grid-template-columns:repeat(4,1fr);background:#0D0D0D;color:#fff;
+  padding:0 52px 46px;gap:0}
+.C .stat div{border-left:1px solid #2A2A2A;padding-left:20px}
+.C .stat div:first-child{border-left:none;padding-left:0}
+.C .stat b{display:block;font-size:40px;font-weight:850;letter-spacing:-.045em}
+.C .stat span{display:block;font-size:12px;color:#8A8A8A;margin-top:5px;font-weight:500}
+.C .tb{width:100%;border-collapse:collapse;margin:46px 0 0}
+.C .tb th{font-size:10.5px;font-weight:700;letter-spacing:.13em;color:#9A9A96;text-align:left;
+  padding:0 14px 10px;border-bottom:2px solid #0D0D0D}
+.C .tb th:first-child{padding-left:52px}
+.C .tb th:last-child{padding-right:52px}
+.C .tb td{padding:16px 14px;border-bottom:1px solid #E8E8E2}
+.C .tb td:first-child{padding-left:52px}
+.C .tb td:last-child{padding-right:52px}
+.C .tb tr.top td{background:#F4F4EE}
+.C .k{font-size:15px;font-weight:850;color:#C4C4BE}
+.C .tb tr.top .k{color:#0D0D0D}
+.C .nm{font-size:16px;font-weight:700;letter-spacing:-.02em}
+.C .nm em{display:block;font-style:normal;font:500 11px 'JetBrains Mono',monospace;color:#9A9A96;margin-top:3px}
+.C .v{font-size:20px;font-weight:850;letter-spacing:-.04em;width:62px}
+.C .bb{height:8px;background:#E8E8E2;min-width:130px}
+.C .bb i{display:block;height:100%;background:#0D0D0D}
+.C .lb{font-size:11.5px;font-weight:800;padding:4px 9px;display:inline-block}
+.C .lb.h{background:#FF3B2F;color:#fff}
+.C .lb.m{background:#E8FF52;color:#0D0D0D}
+.C .lb.n{background:#E8E8E2;color:#8A8A86}
+.C .w{font-size:15px;font-weight:800}
+.C h3{margin:56px 52px 18px;font-size:15px;font-weight:800;letter-spacing:.02em;
+  padding-bottom:9px;border-bottom:2px solid #0D0D0D;display:flex;justify-content:space-between}
+.C h3 em{font-style:normal;font-size:11px;font-weight:600;color:#9A9A96;letter-spacing:0}
+.C .rqs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E8E8E2;margin:0 52px}
+.C .rq{background:#FCFCFA;padding:26px 22px}
+.C .rqn{font-size:52px;font-weight:850;letter-spacing:-.055em;line-height:1}
+.C .rqt{font-size:14px;font-weight:650;line-height:1.45;margin-top:12px;color:#3A3A38}
+.C .rqt em{display:block;font-style:normal;font-size:10.5px;font-weight:800;color:#9A9A96;
+  letter-spacing:.1em;margin-bottom:5px}
+.C .ev{margin:0 52px;padding:22px 0;border-bottom:1px solid #E8E8E2}
+.C .ev .q{font-size:19px;font-weight:600;line-height:1.55;letter-spacing:-.025em}
+.C .ev .m{margin-top:10px;font:500 11.5px 'JetBrains Mono',monospace;color:#9A9A96}
+.C .ev .m b{color:#0D0D0D;margin-right:12px}
+.C .t3{margin:44px 52px 0;background:#0D0D0D;color:#fff;padding:26px 28px}
+.C .t3h{display:inline-block;background:#E8FF52;color:#0D0D0D;font-size:11px;font-weight:800;
+  padding:4px 10px;margin-bottom:12px}
+.C .t3 p{margin:0;font-size:15px;line-height:1.6;color:#D8D8D4;font-weight:500}
+</style></head><body>
+<div class="nav">참지마요 · 스타일 3안 <span style="color:#666;font-weight:400">같은 데이터, 다른 감각 — 하나 고르면 그걸로 전부 만들게</span>
+<span style="float:right"><a href="#a">A 다크</a><a href="#b">B 미니멀</a><a href="#c">C 에디토리얼</a></span></div>
+<div class="wrap">
+<div id="a" class="cap"><b>A. 다크 · 애시드</b>Linear / Raycast 계열 — 검정 바탕 + 라임 액센트, 테두리 없음</div>
+<div class="frame">
+<section class="A">
+  <div class="hd"><div class="eb">CASE QUEUE</div>
+    <h1>먼저 볼 사건을<br><b>5건 중 1건</b>으로 좁혔습니다</h1></div>
+  <div class="big">
+    <div><div class="bn">89<sup>%</sup></div><div class="bl">근무시간 외 발화</div></div>
+    <div><div class="bn">81<sup>%</sup></div><div class="bl">발화 독점률</div></div>
+    <div><div class="bn">13</div><div class="bl">심야 연락</div></div>
+    <div><div class="bn">4</div><div class="bl">별건 법위반 단서</div></div>
+  </div>
+  <div class="tbl">
+    <div class="ra hot">
+      <div class="rk">1</div>
+      <div class="rm"><b>에이블 디자인 업무방</b><span>CJ-AAC61B</span></div>
+      <div class="rb"><i style="width:100.0%"></i></div>
+      <div class="rn">1.00</div>
+      <div class="rl m">중간</div>
+      <div class="rw"><em>연장·휴일근로수당 미지급</em><em>임금 미지급·감액</em></div>
+    </div>
+    <div class="ra ">
+      <div class="rk">2</div>
+      <div class="rm"><b>3병동 프리셉터방</b><span>CJ-EC830B</span></div>
+      <div class="rb"><i style="width:95.3%"></i></div>
+      <div class="rn">0.95</div>
+      <div class="rl h">높음</div>
+      <div class="rw"><em>신고자 불이익 처우</em><em>직장 내 괴롭힘 조치의무 위반</em></div>
+    </div>
+    <div class="ra ">
+      <div class="rk">3</div>
+      <div class="rm"><b>[마케팅팀] 강부장님</b><span>CJ-816B23</span></div>
+      <div class="rb"><i style="width:94.6%"></i></div>
+      <div class="rn">0.95</div>
+      <div class="rl h">높음</div>
+      <div class="rw"><em>근로시간 위반</em><em>신고자 불이익 처우</em></div>
+    </div>
+    <div class="ra ">
+      <div class="rk">4</div>
+      <div class="rm"><b>영업3팀 업무공유방</b><span>CJ-B76F84</span></div>
+      <div class="rb"><i style="width:9.6%"></i></div>
+      <div class="rn">0.10</div>
+      <div class="rl n">관측 없음</div>
+      <div class="rw"><s>—</s></div>
+    </div>
+    <div class="ra ">
+      <div class="rk">5</div>
+      <div class="rm"><b>[기획2팀] 이팀장님</b><span>CJ-F47095</span></div>
+      <div class="rb"><i style="width:5.5%"></i></div>
+      <div class="rn">0.06</div>
+      <div class="rl n">관측 없음</div>
+      <div class="rw"><s>—</s></div>
+    </div></div>
+  <div class="sec">성립요건</div>
+  <div class="rqs">
+    <div class="rq"><span>R1</span><h4>지위 또는 관계의 우위</h4>
+      <div class="rqn">0.70</div>
+      <div class="rqb"><i style="width:70.0%"></i></div></div>
+    <div class="rq"><span>R2</span><h4>업무상 적정범위를 넘는 행위</h4>
+      <div class="rqn">0.66</div>
+      <div class="rqb"><i style="width:66.0%"></i></div></div>
+    <div class="rq"><span>R3</span><h4>신체적·정신적 고통 또는 근무환경 악화</h4>
+      <div class="rqn">0.72</div>
+      <div class="rqb"><i style="width:72.0%"></i></div></div></div>
+  <div class="sec">증거 발화</div>
+  
+    <div class="ev"><div class="evm">05.12 08:55 · #4</div>
+      <p>아까 라운딩 때 그게 인계야? 3년차 신규가 그것도 못해?</p><div class="evt"><em>독성 0.91</em><em>질책성 추궁</em></div></div>
+    <div class="ev"><div class="evm">05.13 22:49 · #14</div>
+      <p>내일 아침에 나한테 왜 그랬는지 설명해. 자기 전에 오늘 뭐 잘못했는지 다섯 개 적어서 보내</p><div class="evt"><em>근무시간 외 지시</em><em>심야 연락</em><em>질책성 추궁</em></div></div>
+    <div class="ev"><div class="evm">05.13 23:33 · #17</div>
+      <p>너는 진짜 답이 없다. 이래서 요즘 애들이 안된다는 거야</p><div class="evt"><em>독성 0.96</em><em>심야 연락</em></div></div>
+    <div class="ev"><div class="evm">05.23 07:34 · #28</div>
+      <p>이딴 식으로 할 거면 간호사 때려치워. 환자한테 민폐야</p><div class="evt"><em>독성 0.97</em></div></div>
+</section></div>
+<div id="b" class="cap"><b>B. 라이트 · 미니멀</b>토스 계열 — 순백, 큰 숫자, 파랑 하나, 여백 위주</div>
+<div class="frame">
+<section class="B">
+  <div class="hd"><em>수사지원</em><h1>조사 우선순위</h1>
+    <p>5건을 분석했습니다. 위에서부터 보시면 됩니다.</p></div>
+  <div class="hero">
+    <div class="hn">1.00</div>
+    <div class="hm"><b>에이블 디자인 업무방</b>
+      <span>별건 법위반 4건 — 임금체불·신고자 보복 포함</span></div>
+  </div>
+  <div class="list">
+    <div class="rw">
+      <span class="k">1</span>
+      <div class="nm"><b>에이블 디자인 업무방</b><em>CJ-AAC61B · 50건 · 47일</em></div>
+      <div class="bar"><i style="width:100.0%;background:#FF9500"></i></div>
+      <b class="v">1.00</b>
+    </div>
+    <div class="rw">
+      <span class="k">2</span>
+      <div class="nm"><b>3병동 프리셉터방</b><em>CJ-EC830B · 58건 · 40일</em></div>
+      <div class="bar"><i style="width:95.3%;background:#FF3B30"></i></div>
+      <b class="v">0.95</b>
+    </div>
+    <div class="rw">
+      <span class="k">3</span>
+      <div class="nm"><b>[마케팅팀] 강부장님</b><em>CJ-816B23 · 55건 · 33일</em></div>
+      <div class="bar"><i style="width:94.6%;background:#FF3B30"></i></div>
+      <b class="v">0.95</b>
+    </div>
+    <div class="rw">
+      <span class="k">4</span>
+      <div class="nm"><b>영업3팀 업무공유방</b><em>CJ-B76F84 · 45건 · 31일</em></div>
+      <div class="bar"><i style="width:9.6%;background:#C7C7CC"></i></div>
+      <b class="v">0.10</b>
+    </div>
+    <div class="rw">
+      <span class="k">5</span>
+      <div class="nm"><b>[기획2팀] 이팀장님</b><em>CJ-F47095 · 31건 · 25일</em></div>
+      <div class="bar"><i style="width:5.5%;background:#C7C7CC"></i></div>
+      <b class="v">0.06</b>
+    </div></div>
+  <h3>성립요건</h3><div class="rqs">
+    <div class="rq"><em>R1</em><h4>지위 또는 관계의 우위</h4>
+      <div class="n">0.70</div>
+      <div class="b"><i style="width:70.0%"></i></div></div>
+    <div class="rq"><em>R2</em><h4>업무상 적정범위를 넘는 행위</h4>
+      <div class="n">0.66</div>
+      <div class="b"><i style="width:66.0%"></i></div></div>
+    <div class="rq"><em>R3</em><h4>신체적·정신적 고통 또는 근무환경 악화</h4>
+      <div class="n">0.72</div>
+      <div class="b"><i style="width:72.0%"></i></div></div></div>
+  <h3>증거 발화</h3>
+    <div class="ev"><p>아까 라운딩 때 그게 인계야? 3년차 신규가 그것도 못해?</p>
+      <div class="m">05.12 08:55<span>독성 0.91 · 질책성 추궁</span></div></div>
+    <div class="ev"><p>내일 아침에 나한테 왜 그랬는지 설명해. 자기 전에 오늘 뭐 잘못했는지 다섯 개 적어서 보내</p>
+      <div class="m">05.13 22:49<span>근무시간 외 지시 · 심야 연락</span></div></div>
+    <div class="ev"><p>너는 진짜 답이 없다. 이래서 요즘 애들이 안된다는 거야</p>
+      <div class="m">05.13 23:33<span>독성 0.96 · 심야 연락</span></div></div>
+    <div class="ev"><p>이딴 식으로 할 거면 간호사 때려치워. 환자한테 민폐야</p>
+      <div class="m">05.23 07:34<span>독성 0.97</span></div></div>
+</section></div>
+<div id="c" class="cap"><b>C. 에디토리얼 · 블록</b>매거진 계열 — 검정 블록 + 형광, 초대형 타이포, 각진 대비</div>
+<div class="frame">
+<section class="C">
+  <div class="hd">
+    <div class="tag">근로감독관 수사지원</div>
+    <h1>수만 줄을<br>먼저 볼 <mark>5건</mark>으로</h1>
+  </div>
+  <div class="stat">
+    <div><b>89%</b><span>근무시간 외 발화</span></div>
+    <div><b>81%</b><span>발화 독점률</span></div>
+    <div><b>2.3</b><span>주당 심야 연락</span></div>
+    <div><b>4</b><span>별건 위반 단서</span></div>
+  </div>
+  <table class="tb"><thead><tr><th></th><th>사건</th><th>우선순위</th><th></th><th>판정</th><th>별건</th></tr></thead>
+  <tbody>
+    <tr class="top">
+      <td class="k">01</td>
+      <td class="nm">에이블 디자인 업무방<em>CJ-AAC61B</em></td>
+      <td class="v">1.00</td>
+      <td><div class="bb"><i style="width:100.0%"></i></div></td>
+      <td class="lb m">중간</td>
+      <td class="w">4</td>
+    </tr>
+    <tr class="">
+      <td class="k">02</td>
+      <td class="nm">3병동 프리셉터방<em>CJ-EC830B</em></td>
+      <td class="v">0.95</td>
+      <td><div class="bb"><i style="width:95.3%"></i></div></td>
+      <td class="lb h">높음</td>
+      <td class="w">2</td>
+    </tr>
+    <tr class="">
+      <td class="k">03</td>
+      <td class="nm">[마케팅팀] 강부장님<em>CJ-816B23</em></td>
+      <td class="v">0.95</td>
+      <td><div class="bb"><i style="width:94.6%"></i></div></td>
+      <td class="lb h">높음</td>
+      <td class="w">2</td>
+    </tr>
+    <tr class="">
+      <td class="k">04</td>
+      <td class="nm">영업3팀 업무공유방<em>CJ-B76F84</em></td>
+      <td class="v">0.10</td>
+      <td><div class="bb"><i style="width:9.6%"></i></div></td>
+      <td class="lb n">관측 없음</td>
+      <td class="w">—</td>
+    </tr>
+    <tr class="">
+      <td class="k">05</td>
+      <td class="nm">[기획2팀] 이팀장님<em>CJ-F47095</em></td>
+      <td class="v">0.06</td>
+      <td><div class="bb"><i style="width:5.5%"></i></div></td>
+      <td class="lb n">관측 없음</td>
+      <td class="w">—</td>
+    </tr></tbody></table>
+  <h3>성립요건 <em>근로기준법 제76조의2</em></h3>
+  <div class="rqs">
+    <div class="rq"><div class="rqn">0.70</div>
+      <div class="rqt"><em>R1</em>지위 또는 관계의 우위</div></div>
+    <div class="rq"><div class="rqn">0.66</div>
+      <div class="rqt"><em>R2</em>업무상 적정범위를 넘는 행위</div></div>
+    <div class="rq"><div class="rqn">0.72</div>
+      <div class="rqt"><em>R3</em>신체적·정신적 고통 또는 근무환경 악화</div></div></div>
+  <h3>증거 발화</h3>
+    <div class="ev"><div class="q">아까 라운딩 때 그게 인계야? 3년차 신규가 그것도 못해?</div>
+      <div class="m"><b>05.12 08:55</b>독성 0.91 / 질책성 추궁</div></div>
+    <div class="ev"><div class="q">내일 아침에 나한테 왜 그랬는지 설명해. 자기 전에 오늘 뭐 잘못했는지 다섯 개 적어서 보내</div>
+      <div class="m"><b>05.13 22:49</b>근무시간 외 지시 / 심야 연락 / 질책성 추궁</div></div>
+    <div class="ev"><div class="q">너는 진짜 답이 없다. 이래서 요즘 애들이 안된다는 거야</div>
+      <div class="m"><b>05.13 23:33</b>독성 0.96 / 심야 연락</div></div>
+    <div class="ev"><div class="q">이딴 식으로 할 거면 간호사 때려치워. 환자한테 민폐야</div>
+      <div class="m"><b>05.23 07:34</b>독성 0.97</div></div>
+  <div class="t3"><div class="t3h">Tier 3 · 사람 검토 필요</div>
+    <p>정량 지표는 낮으나(0.10) 정황 후보 6건 관측 — 가스라이팅, 업무 배제, 의견 묵살 / 선택적 무응답 격차 22%p(대상자 58% vs 동료 80%)</p></div>
+</section></div>
+</div></body></html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>참지마요 soft</title>
+<style>html,body{margin:0;padding:0} .z{zoom:0.62}</style></head>
+<body><link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+:root {
+  --bg:        #FFFFFF;
+  --surf:      #F7F8FA;
+  --surf-2:    #F2F4F6;
+  --hair:      #EAEDF0;
+  --hair-2:    #E1E5EA;
+
+  --fg:        #191F28;
+  --fg-2:      #4E5968;
+  --fg-3:      #8B95A1;
+  --fg-4:      #B0B8C1;
+
+  --accent:    #3182F6;
+  --sig-high:  #F04452;
+  --sig-mid:   #FF8A00;
+  --sig-low:   #8B95A1;
+  --sig-none:  #B0B8C1;
+
+  --radius: 20px;
+}
+
+html, body, .stApp, [class*="css"], button, input, textarea, select {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+               system-ui, "Segoe UI", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.stApp { background: var(--bg); color: var(--fg); }
+#MainMenu, footer, header[data-testid="stHeader"] { display: none !important; }
+.main .block-container { padding: 72px 40px 140px; max-width: 860px; margin: 0 auto; }
+::selection { background: var(--accent); color: #fff; }
+
+/* 스크롤바 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--hair-2); border-radius: 9px; }
+
+/* ───────────────────────── 사이드바 ───────────────────────── */
+section[data-testid="stSidebar"] {
+  background: #FFFFFF;
+  border-right: 1px solid var(--hair);
+}
+section[data-testid="stSidebar"] > div { padding-top: 30px; }
+section[data-testid="stSidebar"] * { color: var(--fg-2) !important; }
+section[data-testid="stSidebar"] label { font-size: 13.5px !important; font-weight: 500; }
+section[data-testid="stSidebar"] hr { border-color: var(--hair); margin: 22px 0; }
+section[data-testid="stSidebar"] input,
+section[data-testid="stSidebar"] div[data-baseweb="input"],
+section[data-testid="stSidebar"] div[data-baseweb="select"] > div {
+  background: var(--surf) !important;
+  border-color: transparent !important;
+  border-radius: 10px !important;
+  color: var(--fg) !important;
+}
+
+.brand { margin-bottom: 28px; }
+.brand-n {
+  font-size: 21px; font-weight: 800; letter-spacing: -.035em;
+  color: var(--fg) !important;
+}
+.brand-s {
+  font-size: 11.5px; font-weight: 500; color: var(--fg-3) !important;
+  margin-top: 4px; letter-spacing: -.005em;
+}
+.side-l {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .14em;
+  color: var(--fg-4) !important; margin: 0 0 10px; text-transform: uppercase;
+}
+
+/* ───────────────────────── 헤드 ───────────────────────── */
+.hd { margin-bottom: 64px; }
+.hd-eb {
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 16px;
+}
+.hd h1 {
+  margin: 0; font-weight: 800; color: var(--fg);
+  font-size: 46px;
+  letter-spacing: -.042em;
+  line-height: 1.18;
+}
+.hd p {
+  margin: 20px 0 0;
+  color: var(--fg-3); line-height: 1.7;
+  font-size: 17px;
+  max-width: 44ch;
+  font-weight: 500;
+}
+
+/* ───────────────────────── 섹션 ───────────────────────── */
+.sec { margin: 88px 0 28px; }
+.sec h3 {
+  margin: 0; color: var(--fg); font-weight: 800;
+  font-size: 27px;
+  letter-spacing: -.035em;
+}
+.sec p {
+  margin: 12px 0 0; color: var(--fg-3);
+  font-size: 16px; line-height: 1.7;
+  max-width: 46ch; font-weight: 500;
+}
+
+/* ───────────────────────── KPI ───────────────────────── */
+.kpi {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  background: transparent;
+  border-radius: var(--radius); overflow: hidden;
+}
+.kpi > div {
+  background: var(--surf);
+  padding: 28px 26px;
+  border-radius: var(--radius);
+}
+.kpi-l {
+  font-size: 14px; font-weight: 600;
+  color: var(--fg-3); letter-spacing: -.01em;
+}
+.kpi-v {
+  font-size: 40px; font-weight: 800;
+  letter-spacing: -.045em; color: var(--fg); line-height: 1.1;
+  margin-top: 10px; font-variant-numeric: tabular-nums;
+}
+.kpi-v em { font-style: normal; font-size: .45em; font-weight: 700; color: var(--fg-3); margin-left: 2px; }
+
+/* ───────────────────────── 사건 목록 (console) ───────────────────────── */
+.rows { margin-top: 4px; }
+.rh, .row {
+  display: grid; align-items: center;
+  grid-template-columns: 30px minmax(0,1fr) 130px 66px 74px minmax(0,1.15fr) 96px;
+  gap: 18px; padding: 0 12px;
+}
+.rh {
+  height: 34px; font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--fg-4); border-bottom: 1px solid var(--hair);
+}
+.row {
+  height: 62px; border-bottom: 1px solid var(--hair);
+  transition: background .12s ease; border-radius: var(--radius);
+}
+.row:hover { background: var(--surf); }
+.row-k { font-size: 13px; font-weight: 700; color: var(--fg-4); font-variant-numeric: tabular-nums; }
+.row.first .row-k { color: var(--accent); }
+.row-n { min-width: 0; }
+.row-n b {
+  display: block; font-size: 14.5px; font-weight: 650; color: var(--fg);
+  letter-spacing: -.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.row-n span { font-size: 11.5px; color: var(--fg-4); font-variant-numeric: tabular-nums; }
+.row-v {
+  font-size: 16px; font-weight: 750; font-variant-numeric: tabular-nums;
+  letter-spacing: -.03em; text-align: right;
+}
+.trk { height: 3px; background: var(--hair-2); border-radius: 9px; overflow: hidden; }
+.trk i { display: block; height: 100%; border-radius: 9px; }
+.pill {
+  display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: -.01em;
+  padding: 4px 10px; border-radius: 99px; white-space: nowrap;
+}
+.flg { display: flex; flex-wrap: wrap; gap: 4px; }
+.flg em {
+  font-style: normal; font-size: 10.5px; font-weight: 600; color: var(--fg-2);
+  background: var(--surf-2); padding: 3px 7px; border-radius: 5px; white-space: nowrap;
+}
+.dash { color: var(--fg-4); }
+
+/* ───────────────────────── 요건 ───────────────────────── */
+.reqs {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  background: transparent;
+  border-radius: var(--radius); overflow: hidden;
+}
+.req {
+  background: var(--surf);
+  padding: 32px 30px 34px;
+  border-radius: var(--radius);
+}
+.req-c {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .13em;
+  color: var(--fg-4); text-transform: uppercase;
+}
+.req-t {
+  font-size: 16px; font-weight: 650; color: var(--fg-2);
+  margin-top: 8px; line-height: 1.5; letter-spacing: -.015em;
+  min-height: 48px;
+}
+.req-v {
+  font-size: 52px; font-weight: 800; letter-spacing: -.05em;
+  line-height: 1; margin: 24px 0 20px;
+  font-variant-numeric: tabular-nums;
+}
+.req-b { margin-bottom: 16px; }
+.req-l {
+  font-size: 11.5px; color: var(--fg-4); line-height: 1.6; letter-spacing: -.005em;
+}
+
+/* 지표 행 */
+.mt { margin-top: 2px; }
+.mt-r {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 13px 0; border-bottom: 1px solid var(--hair);
+}
+.mt-r:last-child { border-bottom: none; }
+.mt-l { font-size: 13.5px; color: var(--fg-2); letter-spacing: -.012em; }
+.mt-n { font-size: 11.5px; color: var(--fg-4); margin-top: 3px; line-height: 1.5; }
+.mt-v {
+  font-size: 14.5px; font-weight: 700; color: var(--fg); white-space: nowrap;
+  font-variant-numeric: tabular-nums; letter-spacing: -.02em;
+}
+
+/* ───────────────────────── 증거 ───────────────────────── */
+.ev {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--hair);
+}
+.ev:first-child { padding-top: 4px; }
+.ev-m {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  font-size: 11.5px; color: var(--fg-4); font-variant-numeric: tabular-nums;
+}
+.ev-m b { color: var(--fg-3); font-weight: 600; }
+.ev-q {
+  font-size: 18px; line-height: 1.65; color: var(--fg);
+  font-weight: 500; letter-spacing: -.018em;
+}
+.ev-t { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 5px; }
+.ev-t em {
+  font-style: normal; font-size: 10.5px; font-weight: 650; padding: 3.5px 8px;
+  border-radius: 5px; letter-spacing: -.005em;
+}
+
+/* 먹칠 */
+.rd {
+  display: inline-block; background: var(--fg); color: var(--bg);
+  border-radius: 3px; padding: 0 .34em; font-size: .8em; font-weight: 700;
+  letter-spacing: .02em; vertical-align: baseline; margin: 0 .06em;
+}
+
+/* ───────────────────────── 인용 ───────────────────────── */
+.ct { padding: 18px 0; border-bottom: 1px solid var(--hair); }
+.ct:last-child { border-bottom: none; }
+.ct-h { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+.ct-s { font-size: 14.5px; font-weight: 700; color: var(--fg); letter-spacing: -.02em; }
+.ct-t { font-size: 13px; color: var(--fg-3); margin-top: 3px; }
+.ct-b {
+  font-size: 13.5px; color: var(--fg-2); line-height: 1.75; margin-top: 10px;
+  letter-spacing: -.008em;
+}
+
+/* ───────────────────────── 알림 ───────────────────────── */
+.note {
+  border-radius: var(--radius); padding: 22px 24px;
+  font-size: 15px; line-height: 1.7; margin-bottom: 14px;
+  background: var(--surf); color: var(--fg-2); font-weight: 450;
+}
+.note b { color: var(--fg); font-weight: 700; }
+.note.warn { box-shadow: inset 3px 0 0 var(--sig-mid); }
+.note.info { box-shadow: inset 3px 0 0 var(--accent); }
+.note.ok   { box-shadow: inset 3px 0 0 var(--sig-low); }
+
+/* ───────────────────────── 사건 헤더 ───────────────────────── */
+.ch {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 40px; padding: 26px 28px; background: var(--surf);
+  border-radius: var(--radius); margin-bottom: 8px;
+}
+.ch h2 { margin: 0; font-size: 22px; font-weight: 750; letter-spacing: -.032em; color: var(--fg); }
+.ch-m { margin-top: 8px; font-size: 12.5px; color: var(--fg-3); font-variant-numeric: tabular-nums; }
+.ch-p { display: flex; gap: 34px; margin-top: 22px; }
+.ch-p div span { display: block; font-size: 11px; color: var(--fg-4); font-weight: 600; }
+.ch-p div b { display: block; font-size: 15px; font-weight: 700; color: var(--fg); margin-top: 4px; letter-spacing: -.02em; }
+.ch-s { text-align: right; flex: none; }
+.ch-s .v { font-size: 54px; font-weight: 800; letter-spacing: -.055em; line-height: 1; font-variant-numeric: tabular-nums; }
+.ch-s .l { font-size: 13px; font-weight: 700; margin-top: 6px; }
+
+/* ───────────────────────── 큰 점수 (soft) ───────────────────────── */
+.score {
+  background: var(--surf); border-radius: var(--radius);
+  padding: 40px 36px; margin-bottom: 12px;
+}
+.score-v { font-size: 76px; font-weight: 800; letter-spacing: -.055em; line-height: 1; font-variant-numeric: tabular-nums; }
+.score-l { font-size: 19px; font-weight: 750; margin-top: 10px; letter-spacing: -.03em; }
+.score-d { font-size: 15px; color: var(--fg-3); margin-top: 10px; line-height: 1.65; font-weight: 500; }
+.score-g { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px 32px; margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--hair-2); }
+.score-g span { display: block; font-size: 13px; color: var(--fg-3); font-weight: 500; }
+.score-g b { display: block; font-size: 17px; font-weight: 700; margin-top: 4px; letter-spacing: -.025em; color: var(--fg); }
+
+/* ───────────────────────── 히트맵 ───────────────────────── */
+.hm td.c { width: 19px; height: 19px; border-radius: 3px; }
+.hm td.d { font-size: 11px; color: var(--fg-4); padding-right: 9px; text-align: right; font-weight: 600; }
+.hm th.h { font-size: 10px; color: var(--fg-4); padding-bottom: 6px; font-weight: 600; }
+.hm table { border-collapse: separate; border-spacing: 3px; }
+.hm-lg { display: flex; align-items: center; gap: 7px; margin-top: 16px; font-size: 11.5px; color: var(--fg-3); }
+.hm-lg i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+/* ───────────────────────── Streamlit 위젯 ───────────────────────── */
+.stTabs [data-baseweb="tab-list"] { gap: 4px; border-bottom: 1px solid var(--hair); }
+.stTabs [data-baseweb="tab"] {
+  height: 40px; padding: 0 14px; font-size: 13.5px; font-weight: 600;
+  color: var(--fg-3); background: transparent; border: none; letter-spacing: -.015em;
+}
+.stTabs [aria-selected="true"] { color: var(--fg) !important; font-weight: 700; }
+.stTabs [data-baseweb="tab-highlight"] { background: var(--accent); height: 2px; }
+.stTabs [data-baseweb="tab-panel"] { padding-top: 22px; }
+
+.stButton > button, .stDownloadButton > button {
+  border-radius: 14px; font-weight: 700; font-size: 14.5px;
+  padding: 15px 24px;
+  border: 1px solid var(--hair-2); background: var(--surf); color: var(--fg);
+  letter-spacing: -.02em; transition: all .13s ease;
+}
+.stButton > button:hover { background: var(--surf-2); border-color: var(--fg-4); }
+.stButton > button[kind="primary"], .stDownloadButton > button[kind="primary"] {
+  background: var(--accent); border-color: var(--accent);
+  color: #FFFFFF;
+}
+.stButton > button[kind="primary"]:hover { filter: brightness(1.08); }
+
+div[data-testid="stExpander"] {
+  border: none; background: var(--surf); border-radius: var(--radius);
+}
+div[data-testid="stExpander"] summary { font-size: 13.5px; font-weight: 600; color: var(--fg-2); }
+div[data-testid="stFileUploader"] section {
+  border: 1.5px dashed var(--hair-2); border-radius: var(--radius);
+  background: var(--surf); padding: 26px;
+}
+div[data-testid="stDataFrame"] { border-radius: var(--radius); overflow: hidden; }
+div[data-testid="stTextInput"] input {
+  background: var(--surf); border: 1px solid var(--hair-2); border-radius: 12px;
+  color: var(--fg); font-size: 15px; padding: 12px 14px;
+}
+.stRadio [role="radiogroup"] { gap: 10px; }
+.stRadio label { font-size: 14px !important; }
+hr { border-color: var(--hair); margin: 40px 0; }
+.stProgress > div > div > div { background: var(--accent); }
+</style><div class="stApp z" style="min-height:100vh"><div class="main"><div class="block-container"><div class="hd"><h1>내 대화 기록,<br>법이 보는 대로 정리해 드려요</h1><p>카카오톡 대화를 올리면 무엇이 근거가 되는지 짚어 드립니다. 필요하면 진정서 초안까지 만들어 드려요.</p></div><div class="note info">🔒 올리신 대화는 <b>분석하기 전에 개인정보가 먼저 지워집니다.</b> 이름·연락처·주소·계좌번호는 분석 엔진에 전달되지 않아요.</div><div class="sec"><h3>정리 결과</h3></div><div class="score"><div class="score-v" style="color:var(--sig-high)">0.69</div><div class="score-l" style="color:var(--sig-high)">높음</div><div class="score-d">3요건 모두에서 강한 지표가 관측됨.</div><div class="score-g"><div><span>분석 기간</span><b>40일</b></div><div><span>대화 수</span><b>58건</b></div><div><span>법이 정한 3요건</span><b>모두 해당</b></div><div><span>근거가 될 발화</span><b>12건</b></div></div><div style="margin-top:24px;font-size:12.5px;color:var(--fg-4)">🔒 지워진 개인정보 — 실명 2건, 발화자명 58건</div></div><div class="sec"><h3>법은 세 가지를 함께 봅니다</h3><p>근로기준법 제76조의2는 ① 지위·관계의 우위 ② 업무상 적정범위 초과 ③ 신체적·정신적 고통, 이 셋이 모두 있어야 직장 내 괴롭힘으로 봅니다.</p></div><div class="reqs"><div class="req"><div class="req-c">요건 1</div><div class="req-t">지위 또는 관계의 우위</div><div class="req-v" style="color:var(--sig-high)">0.70</div><div class="req-b"><div class="trk"><i style="width:70.2%;background:var(--sig-high)"></i></div></div><div class="req-l">「직장에서의 지위 또는 관계 등의 우위를 이용하여」</div></div><div class="req"><div class="req-c">요건 2</div><div class="req-t">업무상 적정범위를 넘는 행위</div><div class="req-v" style="color:var(--sig-high)">0.66</div><div class="req-b"><div class="trk"><i style="width:65.8%;background:var(--sig-high)"></i></div></div><div class="req-l">「업무상 적정범위를 넘어」</div></div><div class="req"><div class="req-c">요건 3</div><div class="req-t">신체적·정신적 고통 또는 근무환경 악화</div><div class="req-v" style="color:var(--sig-high)">0.72</div><div class="req-b"><div class="trk"><i style="width:71.8%;background:var(--sig-high)"></i></div></div><div class="req-l">「신체적·정신적 고통을 주거나 근무환경을 악화시키는 행위」</div></div></div><div class="sec"><h3>근거가 되는 대화</h3></div><div class="ev"><div class="ev-m"><b>2025.05.12 08:55</b><span>#4</span></div><div class="ev-q">아까 라운딩 때 그게 인계야? 3년차 신규가 그것도 못해?</div><div class="ev-t"><em style="background:var(--sig-high)1A;color:var(--sig-high)">독성 0.91</em><em style="background:var(--sig-high)1A;color:var(--sig-high)">질책성 추궁</em></div></div><div class="ev"><div class="ev-m"><b>2025.05.13 22:49</b><span>#14</span></div><div class="ev-q">내일 아침에 나한테 왜 그랬는지 설명해. 자기 전에 오늘 뭐 잘못했는지 다섯 개 적어서 보내</div><div class="ev-t"><em style="background:var(--sig-high)1A;color:var(--sig-high)">근무시간 외 지시</em><em style="background:var(--sig-high)1A;color:var(--sig-high)">심야 연락</em><em style="background:var(--sig-high)1A;color:var(--sig-high)">질책성 추궁</em></div></div><div class="ev"><div class="ev-m"><b>2025.05.13 23:33</b><span>#17</span></div><div class="ev-q">너는 진짜 답이 없다. 이래서 요즘 애들이 안된다는 거야</div><div class="ev-t"><em style="background:var(--sig-high)1A;color:var(--sig-high)">독성 0.96</em><em style="background:var(--sig-high)1A;color:var(--sig-high)">심야 연락</em></div></div></div></div></div></body></html>

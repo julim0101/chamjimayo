@@ -1,0 +1,1 @@
+{"id": "PREC-TEMPLATE", "type": "판례", "court": "", "case_no": "", "date": "", "title": "[템플릿] 이 줄을 복사해 실제 판례로 채우세요", "text": "판시사항 또는 판결요지 원문을 여기에 붙여넣습니다. 요약·의역하지 말고 원문을 그대로 넣어야 RAG 인용의 신뢰성이 유지됩니다.", "holding": "이 판례가 확립한 법리를 한 문장으로", "tags": ["지위우위"], "maps_to": ["R1"], "url": "", "verified": false, "collected_by": ""}
