@@ -97,8 +97,11 @@ def chrome() -> dict:
     """상단 네비 + 설정. 사이드바를 쓰지 않는다."""
     r, clf = get_retriever(), get_classifier()
     stats = r.stats()
-    ui.nav(f"법령 <b>{stats['total']}</b>건 · 검색 <b>{stats['backend']}</b> "
-           f"· 분류 <b>{clf.backend}</b>")
+    ui.nav([
+        ("법령", f"{stats['total']}건"),
+        ("검색", stats['backend']),
+        ("분류", clf.backend),
+    ])
 
     role = st.radio("화면", [CONSOLE, SOFT], key="role",
                     horizontal=True, label_visibility="collapsed")
@@ -131,6 +134,7 @@ def view_console(cfg: dict) -> None:
         "조사 우선순위",
         "근로기준법 제76조의2 성립요건을 정량 지표로 환산해 사건별 조사 우선순위를 산출합니다. "
         "괴롭힘 성립 여부를 판정하지는 않습니다.",
+        eyebrow="근로감독관 수사지원",
     )
 
     src = st.radio("대상", ["데모 사건", "파일 업로드"], horizontal=True,
@@ -364,6 +368,7 @@ def view_soft(cfg: dict) -> None:
         "내 대화 기록 정리",
         "카카오톡 대화를 올리면 법이 정한 요건에 맞춰 무엇이 근거가 되는지 정리하고, "
         "진정서 초안을 만들어 드립니다.",
+        eyebrow="피해 근로자 리포트",
     )
 
     ui.note(

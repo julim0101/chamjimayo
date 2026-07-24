@@ -87,10 +87,15 @@ p, div, span, li, label {{ font-size: 14.5px; }}
 }}
 .nav-in {{ max-width: 1180px; margin: 0 auto; width: 100%; display: flex;
            align-items: center; gap: 28px; }}
-.nav-b {{ font-size: 16px; font-weight: 700; color: var(--fg); letter-spacing: -.03em; }}
+.nav-b {{ display: flex; align-items: center; font-size: 16px; font-weight: 700;
+          color: var(--fg); letter-spacing: -.03em; }}
 .nav-b i {{ font-style: normal; color: var(--accent); }}
-.nav-s {{ margin-left: auto; font-size: 12.5px; color: var(--fg-3); }}
-.nav-s b {{ color: var(--fg-2); font-weight: 600; }}
+.nav-mark {{ display: inline-block; width: 9px; height: 9px; border-radius: 3px;
+             background: var(--accent); margin-right: 9px; }}
+.nav-s {{ margin-left: auto; display: flex; align-items: center; gap: 8px; }}
+.nav-chip {{ font-size: 12px; color: var(--fg-3); background: var(--surf-2);
+             border-radius: 20px; padding: 5px 12px; white-space: nowrap; }}
+.nav-chip b {{ color: var(--fg-2); font-weight: 650; margin-left: 3px; }}
 
 /* 네비 링크 = Streamlit radio */
 div[data-testid="stRadio"].navsel {{ position: fixed; top: 0; left: 0; right: 0;
@@ -98,9 +103,11 @@ div[data-testid="stRadio"].navsel {{ position: fixed; top: 0; left: 0; right: 0;
 div[data-testid="stRadio"].navsel > div {{ pointer-events: auto; }}
 
 /* ───────── 페이지 헤더 ───────── */
-.ph {{ margin-bottom: 32px; }}
-.ph h1 {{ margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -.03em; color: var(--fg); }}
-.ph p {{ margin: 8px 0 0; color: var(--fg-3); font-size: 14.5px; line-height: 1.65; max-width: 76ch; }}
+.ph {{ margin-bottom: 36px; }}
+.ph-eb {{ font-size: 12.5px; font-weight: 700; color: var(--accent); letter-spacing: .02em;
+          margin-bottom: 10px; }}
+.ph h1 {{ margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -.035em; color: var(--fg); }}
+.ph p {{ margin: 10px 0 0; color: var(--fg-3); font-size: 14.5px; line-height: 1.65; max-width: 76ch; }}
 
 /* ───────── 섹션 ───────── */
 .sec {{ margin: 48px 0 16px; }}
@@ -269,17 +276,24 @@ def sig(label: str) -> str:
 # ================================================================ 레이아웃
 
 
-def nav(status: str = "") -> None:
-    s = f'<div class="nav-s">{status}</div>' if status else ""
+def nav(stats: list[tuple[str, str]] | str = "") -> None:
+    if isinstance(stats, str):
+        s = f'<div class="nav-s">{stats}</div>' if stats else ""
+    else:
+        chips = "".join(
+            f'<span class="nav-chip">{_e(k)} <b>{_e(v)}</b></span>' for k, v in stats
+        )
+        s = f'<div class="nav-s">{chips}</div>' if stats else ""
     _w(
         f'<div class="nav"><div class="nav-in">'
-        f'<div class="nav-b">참지마요</div>{s}</div></div>'
+        f'<div class="nav-b"><span class="nav-mark"></span>참지마요</div>{s}</div></div>'
     )
 
 
-def page_head(title: str, desc: str = "") -> None:
+def page_head(title: str, desc: str = "", eyebrow: str = "") -> None:
     p = f"<p>{_e(desc)}</p>" if desc else ""
-    _w(f'<div class="ph"><h1>{_e(title)}</h1>{p}</div>')
+    e = f'<div class="ph-eb">{_e(eyebrow)}</div>' if eyebrow else ""
+    _w(f'<div class="ph">{e}<h1>{_e(title)}</h1>{p}</div>')
 
 
 def section(title: str, desc: str = "") -> None:
