@@ -14,6 +14,8 @@ pinned: false
 > 텍스트 마이닝 · 노동법 RAG를 활용한 **직장 내 괴롭힘 입증 지원 서비스**
 > 제8회 K-디지털 트레이닝 해커톤 · 팀 **참교육스쿨**
 
+**🔗 [라이브 데모(앱)](https://chamjimayo-bmj9e3uc9glhayje3ywuef.streamlit.app/)** · **[소개 페이지](https://julim0101.github.io/chamjimayo/)**
+
 ---
 
 ## 무엇을 하는가
@@ -215,6 +217,8 @@ chamjimayo/
 ├── scripts/
 │   ├── smoke_test.py             파이프라인 검증
 │   └── make_qr.py                시연용 QR 생성
+├── docs/
+│   └── index.html                소개 랜딩 페이지 (GitHub Pages)
 ├── requirements.txt              전체 (ML 포함)
 ├── requirements-lite.txt         경량 (ML 없이)
 └── DEPLOY.md                     배포 + 시연 시나리오
