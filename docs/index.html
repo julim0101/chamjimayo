@@ -197,7 +197,7 @@ footer{padding:44px 0 60px;border-top:1px solid var(--line);color:var(--fg-3);fo
     <a href="#modes">대상</a>
     <a href="#features">기능</a>
   </div>
-  <a class="btn btn-primary" href="https://chamjimayo-bmj9e3uc9glhayje3ywuef.streamlit.app/" target="_blank" rel="noopener">무료 체험 →</a>
+  <a class="btn btn-primary" href="#" onclick="openApp(event)">시작하기 →</a>
 </div></nav>
 
 <!-- HERO -->
@@ -207,7 +207,7 @@ footer{padding:44px 0 60px;border-top:1px solid var(--line);color:var(--fg-3);fo
     <h1>조사 착수 <em>전</em>,<br>어디부터 볼지<br>정해드립니다</h1>
     <p>쏟아지는 직장 내 괴롭힘 신고를 근로기준법 제76조의2 성립요건으로 정량 분석해, 사건별 <b style="color:#E7EAF4">조사 우선순위</b>를 자동으로 산출합니다. 성립 여부는 판정하지 않고, 검토 순서만 제안합니다.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="https://chamjimayo-bmj9e3uc9glhayje3ywuef.streamlit.app/" target="_blank" rel="noopener">무료 체험 시작하기 →</a>
+      <a class="btn btn-primary" href="#" onclick="openApp(event)">시작하기 →</a>
       <a class="btn btn-ghost" href="#how">작동 방식 보기</a>
     </div>
     <div class="hero-meta">
@@ -341,9 +341,9 @@ footer{padding:44px 0 60px;border-top:1px solid var(--line);color:var(--fg-3);fo
 <section><div class="wrap">
   <div class="cta reveal">
     <h2>지금 바로, 데모 사건으로 체험해 보세요</h2>
-    <p>설치·회원가입 없이 브라우저에서 바로 실행됩니다. 5건의 데모 사건이 준비되어 있습니다.</p>
+    <p>설치·회원가입 없이 이 페이지에서 바로 실행됩니다. 5건의 데모 사건이 준비되어 있습니다.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="https://chamjimayo-bmj9e3uc9glhayje3ywuef.streamlit.app/" target="_blank" rel="noopener">무료 체험 시작하기 →</a>
+      <a class="btn btn-primary" href="#" onclick="openApp(event)">지금 시작하기 →</a>
     </div>
   </div>
 </div></section>
@@ -357,9 +357,55 @@ footer{padding:44px 0 60px;border-top:1px solid var(--line);color:var(--fg-3);fo
   <p class="foot-note">본 서비스는 대화 기록의 통계 분석을 제공하며 직장 내 괴롭힘의 성립 여부를 판정하지 않습니다. 산출된 보고서·진정서는 초안이므로 제출 전 노무사·변호사 검토를 권장합니다.</p>
 </div></footer>
 
+<!-- 앱 실행 모달 (페이지 내 임베드) -->
+<style>
+.app-modal{position:fixed;inset:0;z-index:200;background:rgba(8,10,16,.74);backdrop-filter:blur(6px);
+  display:none;flex-direction:column;padding:20px}
+.app-modal.open{display:flex}
+.app-modal-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  max-width:1320px;width:100%;margin:0 auto 12px;color:#fff}
+.amb-title{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px}
+.amb-title .mk{width:16px;height:16px;border-radius:5px;background:linear-gradient(135deg,#5563F0,#7C6BF7)}
+.amb-actions{display:flex;align-items:center;gap:10px}
+.amb-link{font-size:13px;color:#C9CEFF;font-weight:600;padding:8px 12px;border-radius:9px}
+.amb-link:hover{color:#fff;background:rgba(255,255,255,.08)}
+.amb-close{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);
+  border-radius:9px;padding:8px 15px;font-weight:700;font-size:13.5px;cursor:pointer;
+  font-family:inherit;transition:.14s}
+.amb-close:hover{background:rgba(255,255,255,.24)}
+.app-modal-body{position:relative;flex:1;max-width:1320px;width:100%;margin:0 auto;
+  background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.amb-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:#828DA0;font-size:14px;text-align:center;padding:24px;line-height:1.6}
+#appFrame{position:relative;width:100%;height:100%;border:0}
+</style>
+<div id="appModal" class="app-modal" aria-hidden="true">
+  <div class="app-modal-bar">
+    <span class="amb-title"><span class="mk"></span>참지마요 · 체험</span>
+    <span class="amb-actions">
+      <a class="amb-link" href="https://chamjimayo-bmj9e3uc9glhayje3ywuef.streamlit.app/" target="_blank" rel="noopener">새 탭에서 열기 ↗</a>
+      <button class="amb-close" onclick="closeApp()" aria-label="닫기">✕ 닫기</button>
+    </span>
+  </div>
+  <div class="app-modal-body">
+    <div class="amb-loading">앱을 불러오는 중입니다…<br>최초 실행은 20~30초 걸릴 수 있어요.</div>
+    <iframe id="appFrame" title="참지마요 앱" allow="clipboard-read; clipboard-write"></iframe>
+  </div>
+</div>
+
 <script>
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const APP_URL="https://chamjimayo-bmj9e3uc9glhayje3ywuef.streamlit.app/?embed=true";
+function openApp(e){if(e)e.preventDefault();
+  const m=document.getElementById('appModal'), f=document.getElementById('appFrame');
+  if(!f.getAttribute('src'))f.setAttribute('src',APP_URL);
+  m.classList.add('open');m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+function closeApp(){const m=document.getElementById('appModal');
+  m.classList.remove('open');m.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeApp();});
+document.getElementById('appModal').addEventListener('click',e=>{if(e.target.id==='appModal')closeApp();});
 </script>
 </body>
 </html>
