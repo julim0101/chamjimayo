@@ -57,6 +57,10 @@ CSS = f"""{_FONT}
 
   --r: 12px;
   --nav-h: 56px;
+
+  --shadow-sm: 0 1px 2px rgba(23,31,40,.04), 0 1px 3px rgba(23,31,40,.03);
+  --shadow-md: 0 2px 8px rgba(23,31,40,.05), 0 6px 18px rgba(23,31,40,.04);
+  --shadow-lift: 0 8px 24px rgba(23,31,40,.10);
 }}
 
 html, body, .stApp, button, input, textarea, select {{
@@ -81,8 +85,9 @@ p, div, span, li, label {{ font-size: 14.5px; }}
 /* ───────── 상단 네비 ───────── */
 .nav {{
   position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 100;
-  background: rgba(255,255,255,.88); backdrop-filter: blur(10px);
+  background: rgba(255,255,255,.82); backdrop-filter: saturate(180%) blur(12px);
   border-bottom: 1px solid var(--line);
+  box-shadow: 0 4px 20px rgba(23,31,40,.04);
   display: flex; align-items: center; padding: 0 32px;
 }}
 .nav-in {{ max-width: 1180px; margin: 0 auto; width: 100%; display: flex;
@@ -90,8 +95,9 @@ p, div, span, li, label {{ font-size: 14.5px; }}
 .nav-b {{ display: flex; align-items: center; font-size: 16px; font-weight: 700;
           color: var(--fg); letter-spacing: -.03em; }}
 .nav-b i {{ font-style: normal; color: var(--accent); }}
-.nav-mark {{ display: inline-block; width: 9px; height: 9px; border-radius: 3px;
-             background: var(--accent); margin-right: 9px; }}
+.nav-mark {{ display: inline-block; width: 10px; height: 10px; border-radius: 3px;
+             background: linear-gradient(135deg, var(--accent), #7C89F2); margin-right: 9px;
+             box-shadow: 0 1px 4px rgba(79,95,224,.4); }}
 .nav-s {{ margin-left: auto; display: flex; align-items: center; gap: 8px; }}
 .nav-chip {{ font-size: 12px; color: var(--fg-3); background: var(--surf-2);
              border-radius: 20px; padding: 5px 12px; white-space: nowrap; }}
@@ -115,14 +121,46 @@ div[data-testid="stRadio"].navsel > div {{ pointer-events: auto; }}
 .sec h2 {{ margin: 0; font-size: 17px; font-weight: 650; letter-spacing: -.02em; color: var(--fg); }}
 .sec p {{ margin: 6px 0 0; color: var(--fg-3); font-size: 13px; line-height: 1.65; max-width: 82ch; }}
 
+/* ───────── 히어로 ───────── */
+.hero {{ position: relative; margin: 0 0 40px; padding: 42px 44px 38px; border-radius: 18px;
+  background: linear-gradient(135deg, #EEF1FF 0%, #F5F7FB 52%, #FFFFFF 100%);
+  border: 1px solid var(--line); overflow: hidden; box-shadow: var(--shadow-md); }}
+.hero::after {{ content: ""; position: absolute; right: -90px; top: -90px; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(79,95,224,.12), transparent 70%); pointer-events: none; }}
+.hero .eb {{ position: relative; font-size: 12px; font-weight: 700; letter-spacing: .05em;
+  color: var(--accent); margin-bottom: 14px; text-transform: uppercase; }}
+.hero h1 {{ position: relative; margin: 0; font-size: 34px; font-weight: 800; letter-spacing: -.04em;
+  line-height: 1.22; color: var(--fg); }}
+.hero h1 em {{ font-style: normal; color: var(--accent); }}
+.hero p {{ position: relative; margin: 15px 0 0; font-size: 15px; color: var(--fg-2);
+  line-height: 1.72; max-width: 64ch; }}
+.hero .steps {{ position: relative; display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }}
+.hero .step {{ display: flex; align-items: center; gap: 9px; background: rgba(255,255,255,.72);
+  border: 1px solid var(--line); border-radius: 10px; padding: 9px 14px; font-size: 13px;
+  font-weight: 550; color: var(--fg-2); backdrop-filter: blur(4px); }}
+.hero .step b {{ display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px;
+  border-radius: 6px; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700;
+  font-family: var(--font-mono); }}
+.hero .arw {{ color: var(--fg-4); align-self: center; font-size: 13px; }}
+
+/* ───────── 빈 상태 ───────── */
+.empty {{ text-align: center; padding: 60px 24px; background: var(--surf);
+  border: 1px dashed var(--line-2); border-radius: var(--r); }}
+.empty .ico {{ font-size: 30px; margin-bottom: 12px; opacity: .9; }}
+.empty h3 {{ margin: 0; font-size: 15px; font-weight: 650; color: var(--fg-2); }}
+.empty p {{ margin: 8px auto 0; font-size: 13px; color: var(--fg-4); max-width: 46ch; line-height: 1.6; }}
+
 /* ───────── 카드 / 그리드 ───────── */
-.card {{ background: var(--surf); border: 1px solid var(--line); border-radius: var(--r); padding: 24px; }}
+.card {{ background: var(--surf); border: 1px solid var(--line); border-radius: var(--r); padding: 24px;
+  box-shadow: var(--shadow-sm); }}
 .g2 {{ display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }}
 .g3 {{ display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }}
 .g4 {{ display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }}
 
 /* KPI */
-.kpi {{ background: var(--surf); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; }}
+.kpi {{ background: var(--surf); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px;
+  box-shadow: var(--shadow-sm); transition: transform .16s ease, box-shadow .16s ease; }}
+.kpi:hover {{ transform: translateY(-2px); box-shadow: var(--shadow-md); }}
 .kpi span {{ display: block; font-size: 13px; color: var(--fg-3); }}
 .kpi b {{ display: block; font-size: 26px; font-weight: 700; letter-spacing: -.035em;
           margin-top: 6px; font-variant-numeric: tabular-nums; color: var(--fg);
@@ -131,7 +169,8 @@ div[data-testid="stRadio"].navsel > div {{ pointer-events: auto; }}
 
 /* ───────── 표 ───────── */
 .tb {{ width: 100%; border-collapse: collapse; background: var(--surf);
-       border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }}
+       border: 1px solid var(--line); border-radius: var(--r); overflow: hidden;
+       box-shadow: var(--shadow-sm); }}
 .tb th {{ font-size: 12px; font-weight: 600; color: var(--fg-3); text-align: left;
           padding: 12px 16px; background: var(--surf-2); border-bottom: 1px solid var(--line); white-space: nowrap; }}
 .tb td {{ padding: 14px 16px; border-bottom: 1px solid var(--line); color: var(--fg-2); vertical-align: middle; }}
@@ -153,7 +192,9 @@ div[data-testid="stRadio"].navsel > div {{ pointer-events: auto; }}
 .tag.q {{ background: var(--surf-2); color: var(--fg-2); font-weight: 500; margin: 0 4px 4px 0; }}
 
 /* ───────── 요건 ───────── */
-.req {{ background: var(--surf); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; }}
+.req {{ background: var(--surf); border: 1px solid var(--line); border-radius: var(--r); padding: 20px;
+        box-shadow: var(--shadow-sm); transition: transform .16s ease, box-shadow .16s ease; }}
+.req:hover {{ transform: translateY(-2px); box-shadow: var(--shadow-md); }}
 .req > span {{ font-size: 12px; color: var(--fg-4); }}
 .req > h3 {{ margin: 6px 0 0; font-size: 14.5px; font-weight: 600; color: var(--fg-2);
              line-height: 1.5; min-height: 44px; }}
@@ -187,14 +228,15 @@ div[data-testid="stRadio"].navsel > div {{ pointer-events: auto; }}
 /* ───────── 알림 ───────── */
 .note {{ background: var(--surf); border: 1px solid var(--line); border-left: 3px solid var(--fg-4);
          border-radius: var(--r); padding: 14px 16px; font-size: 13.5px; line-height: 1.65;
-         color: var(--fg-2); margin-bottom: 12px; }}
+         color: var(--fg-2); margin-bottom: 12px; box-shadow: var(--shadow-sm); }}
 .note b {{ color: var(--fg); font-weight: 650; }}
 .note.warn {{ border-left-color: var(--mid); }}
 .note.info {{ border-left-color: var(--accent); }}
 
 /* ───────── 사건 헤더 ───────── */
 .ch {{ background: var(--surf); border: 1px solid var(--line); border-radius: var(--r);
-       padding: 22px 24px; display: flex; justify-content: space-between; gap: 32px; align-items: flex-start; }}
+       padding: 22px 24px; display: flex; justify-content: space-between; gap: 32px; align-items: flex-start;
+       box-shadow: var(--shadow-sm); }}
 .ch h2 {{ margin: 0; font-size: 18px; font-weight: 650; letter-spacing: -.025em; color: var(--fg); }}
 .ch .m {{ margin-top: 6px; font-size: 12.5px; color: var(--fg-3); font-variant-numeric: tabular-nums; }}
 .ch .p {{ display: flex; gap: 28px; margin-top: 18px; }}
@@ -226,13 +268,22 @@ div[data-testid="stRadio"].navsel > div {{ pointer-events: auto; }}
 .stTabs [data-baseweb="tab-panel"] {{ padding-top: 20px; }}
 
 .stButton > button, .stDownloadButton > button {{
-  border-radius: 8px; font-weight: 600; font-size: 14px; padding: 10px 18px;
+  border-radius: 9px; font-weight: 600; font-size: 14px; padding: 10px 18px;
   border: 1px solid var(--line-2); background: var(--surf-2); color: var(--fg);
-  letter-spacing: -.015em;
+  letter-spacing: -.015em; box-shadow: var(--shadow-sm);
+  transition: transform .14s ease, box-shadow .14s ease, background .14s ease, border-color .14s ease;
 }}
-.stButton > button:hover {{ border-color: var(--fg-4); background: var(--line); }}
+.stButton > button:not([kind="primary"]):hover,
+.stDownloadButton > button:not([kind="primary"]):hover {{
+  border-color: var(--fg-4); background: var(--line); transform: translateY(-1px);
+}}
 .stButton > button[kind="primary"], .stDownloadButton > button[kind="primary"] {{
   background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700;
+  box-shadow: 0 2px 10px rgba(79,95,224,.30);
+}}
+.stButton > button[kind="primary"]:hover, .stDownloadButton > button[kind="primary"]:hover {{
+  background: #4453D4; border-color: #4453D4; color: #fff;
+  transform: translateY(-1px); box-shadow: 0 5px 16px rgba(79,95,224,.40);
 }}
 div[data-testid="stExpander"] {{ border: 1px solid var(--line); background: var(--surf); border-radius: var(--r); }}
 div[data-testid="stExpander"] summary {{ font-size: 13.5px; color: var(--fg-2); }}
@@ -303,6 +354,25 @@ def section(title: str, desc: str = "") -> None:
 
 def note(kind: str, body: str) -> None:
     _w(f'<div class="note {kind}">{body}</div>')
+
+
+def hero(eyebrow: str, title_html: str, desc: str, steps: list[str] | None = None) -> None:
+    """랜딩 히어로. title_html은 신뢰된 내부 문자열(<em> 허용), 나머지는 이스케이프."""
+    steps_html = ""
+    if steps:
+        chips = '<span class="arw">→</span>'.join(
+            f'<span class="step"><b>{i}</b>{_e(s)}</span>' for i, s in enumerate(steps, 1)
+        )
+        steps_html = f'<div class="steps">{chips}</div>'
+    _w(
+        f'<div class="hero"><div class="eb">{_e(eyebrow)}</div>'
+        f"<h1>{title_html}</h1><p>{_e(desc)}</p>{steps_html}</div>"
+    )
+
+
+def empty(title: str, desc: str = "", icon: str = "📂") -> None:
+    d = f"<p>{_e(desc)}</p>" if desc else ""
+    _w(f'<div class="empty"><div class="ico">{_e(icon)}</div><h3>{_e(title)}</h3>{d}</div>')
 
 
 def footer(text: str) -> None:
