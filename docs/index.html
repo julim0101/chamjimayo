@@ -375,35 +375,162 @@ footer{padding:44px 0 60px;border-top:1px solid var(--line);color:var(--fg-3);fo
 .amb-close:hover{background:rgba(255,255,255,.24)}
 .app-modal-body{position:relative;flex:1;max-width:1320px;width:100%;margin:0 auto;
   background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55)}
-.amb-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  color:#828DA0;font-size:14px;text-align:center;padding:24px;line-height:1.6}
-#appFrame{position:relative;width:100%;height:100%;border:0}
+.app-modal-body{overflow:auto}
+.demo{padding:26px 28px}
+.demo h3{font-size:17px;font-weight:800;letter-spacing:-.02em;margin-bottom:3px}
+.demo .sub{font-size:12.5px;color:var(--fg-3)}
+.dkpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 20px}
+.dkpi .k{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.dkpi .k span{font-size:12px;color:var(--fg-3)}
+.dkpi .k b{display:block;font-family:var(--mono);font-size:23px;font-weight:700;margin-top:5px;letter-spacing:-.03em}
+.dtable{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.dtable th{font-size:11.5px;color:var(--fg-3);text-align:left;padding:11px 14px;background:var(--soft);border-bottom:1px solid var(--line);white-space:nowrap}
+.dtable td{padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px;color:var(--fg-2);cursor:pointer;vertical-align:middle}
+.dtable tr:last-child td{border-bottom:0}
+.dtable tr:hover td{background:var(--soft)}
+.dtable tr.sel td{background:#EEF1FF}
+.dtable .nm{font-weight:650;color:var(--fg)}
+.dtable .nm small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--fg-4);font-weight:400;margin-top:2px}
+.dbar{height:5px;width:84px;background:var(--line);border-radius:9px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:8px}
+.dbar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#7C6BF7,#5563F0)}
+.dsc{font-family:var(--mono);font-weight:700;color:var(--fg)}
+.dpill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.dpill.h{background:#FFE7E7;color:#D23}
+.dpill.m{background:#FFF1DB;color:#B5730A}
+.dpill.n{background:var(--soft-2);color:var(--fg-3)}
+.dflag{font-size:11px;font-weight:700;color:#B5730A;background:#FFF1DB;border-radius:6px;padding:2px 8px}
+.ddetail{margin-top:18px;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.ddetail .dh{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.ddetail .dh .dt{font-size:16px;font-weight:750}
+.ddetail .meta{display:flex;gap:24px;margin-top:16px;flex-wrap:wrap}
+.ddetail .meta div span{display:block;font-size:11.5px;color:var(--fg-4)}
+.ddetail .meta div b{display:block;font-size:14px;margin-top:3px;font-weight:700}
+.ddetail .meta div b.mono{font-family:var(--mono)}
+.dnote{margin-top:14px;font-size:12.5px;line-height:1.55;color:#8a5a00;background:#FFF6E6;border:1px solid #FFE2B0;border-radius:10px;padding:11px 13px}
+.app{padding:24px 26px}
+.app-head h3{font-size:18px;font-weight:800;letter-spacing:-.02em}
+.app-head .sub{font-size:12.5px;color:var(--fg-3);margin-top:3px}
+.app-controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:18px 0 6px}
+.uploader{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:10px;cursor:pointer;box-shadow:0 2px 10px rgba(85,99,240,.3)}
+.uploader:hover{background:var(--accent-ink)}
+.csep{font-size:12px;color:var(--fg-4);margin:0 2px}
+.chip{background:var(--soft);border:1px solid var(--line-2);border-radius:20px;padding:8px 13px;font-size:12.5px;font-weight:600;color:var(--fg-2);cursor:pointer;font-family:inherit}
+.chip:hover{border-color:var(--fg-4);background:var(--bg)}
+.chip.alt{background:#EEF1FF;border-color:#C7CEFF;color:var(--accent-ink)}
+.empty2{text-align:center;color:var(--fg-4);font-size:13px;padding:50px 20px;border:1px dashed var(--line-2);border-radius:12px;margin-top:14px}
+.busy{text-align:center;color:var(--fg-3);font-size:13px;padding:40px}
+.chead{margin-top:16px;display:flex;justify-content:space-between;gap:20px;align-items:flex-start;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.chead .ct{font-size:16px;font-weight:750}
+.chead .cm{font-size:12px;color:var(--fg-3);margin-top:4px}
+.chead .cs{text-align:right;flex:none}
+.chead .cs .big{font-family:var(--mono);font-size:30px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.rqgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.rqcard{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:16px}
+.rqcard .rc{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.02em}
+.rqcard h5{margin:6px 0 0;font-size:12.5px;font-weight:700;color:var(--fg-2);line-height:1.4;min-height:34px}
+.rqcard .rs{font-family:var(--mono);font-size:23px;font-weight:700;margin:8px 0 6px;letter-spacing:-.03em}
+.rqcard .mrow{display:flex;justify-content:space-between;font-size:11px;color:var(--fg-3);padding:4px 0;border-top:1px solid var(--line);gap:8px}
+.rqcard .mrow b{color:var(--fg-2);font-weight:650;font-variant-numeric:tabular-nums;white-space:nowrap}
+.flagbox{margin-top:14px;background:#FFF6E6;border:1px solid #FFE2B0;border-radius:12px;padding:14px 16px}
+.flagbox .fh{font-size:12.5px;font-weight:700;color:#8a5a00;margin-bottom:6px}
+.flagbox .fl{font-size:12px;color:#8a5a00;padding:2px 0;line-height:1.5}
+.sec2{margin-top:22px;font-size:14px;font-weight:750}
+.sec2 .sd{font-size:12px;color:var(--fg-3);font-weight:400;margin-top:3px}
+.ev2{padding:12px 0;border-bottom:1px solid var(--line)}
+.ev2:last-child{border-bottom:0}
+.ev2 .m{font-size:11px;color:var(--fg-4);font-family:var(--mono);margin-bottom:5px}
+.ev2 .q{font-size:14px;color:var(--fg);line-height:1.6;white-space:pre-wrap}
+.ev2 .tags{margin-top:7px;display:flex;gap:5px;flex-wrap:wrap}
+.ev2 .tg{font-size:10.5px;font-weight:700;background:#FFE7E7;color:#D23;border-radius:6px;padding:2px 7px}
 </style>
 <div id="appModal" class="app-modal" aria-hidden="true">
   <div class="app-modal-bar">
     <span class="amb-title"><span class="mk"></span>참지마요 · 체험</span>
     <span class="amb-actions">
-      <a class="amb-link" href="https://chamjimayo-bmj9e3uc9glhayje3ywuef.streamlit.app/" target="_blank" rel="noopener">새 탭에서 열기 ↗</a>
       <button class="amb-close" onclick="closeApp()" aria-label="닫기">✕ 닫기</button>
     </span>
   </div>
-  <div class="app-modal-body">
-    <div class="amb-loading">앱을 불러오는 중입니다…<br>최초 실행은 20~30초 걸릴 수 있어요.</div>
-    <iframe id="appFrame" title="참지마요 앱" allow="clipboard-read; clipboard-write"></iframe>
-  </div>
+  <div class="app-modal-body" id="appBody"></div>
 </div>
 
+<script src="engine.js"></script>
 <script>
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-const APP_URL="https://chamjimayo-bmj9e3uc9glhayje3ywuef.streamlit.app/?embed=true";
+const DEMOS=[{t:'간호사 태움',f:'demo0.txt'},{t:'사무직 상사 폭언',f:'demo1.txt'},{t:'소규모 사장 갑질(단톡)',f:'demo2.txt'},{t:'정상업무(대조군)',f:'demo3.txt'},{t:'교묘한 따돌림',f:'demo4.txt'}];
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const pc=l=>l==='높음'?'h':l==='중간'?'m':'n';
+const col=l=>l==='높음'?'#D23':l==='중간'?'#B5730A':'#8B95A1';
+const two=n=>String(n).padStart(2,'0');
+const fmt=d=>d.getFullYear()+'.'+two(d.getMonth()+1)+'.'+two(d.getDate())+' '+two(d.getHours())+':'+two(d.getMinutes());
+
+function reqCard(b){
+  const c=b.score>=.6?'#C1121F':b.score>=.38?'#E36414':b.score>=.2?'#5C6B73':'#8D99AE';
+  const rows=b.metrics.map(m=>`<div class="mrow"><span>${esc(m[0])}</span><b>${esc(m[1])}</b></div>`).join('');
+  return `<div class="rqcard"><div class="rc">요건 ${b.code[1]}</div><h5>${esc(b.title)}</h5>
+    <div class="rs" style="color:${c}">${b.score.toFixed(2)}</div>
+    <div class="dbar" style="width:100%"><i style="width:${(b.score*100).toFixed(0)}%;background:${c}"></i></div>${rows}</div>`;
+}
+function renderOne(c){
+  const flags=Object.entries(c.law_flags);
+  const flagBox=flags.length?`<div class="flagbox"><div class="fh">🚩 별건 위반 단서 ${flags.length}건 — 그 자체로 형사처벌 대상, 조사 우선순위 상승</div>${flags.map(([n,l])=>`<div class="fl"><b>${esc(n)}</b> · ${esc(l)}</div>`).join('')}</div>`:'';
+  const rev=c.needs_human_review?`<div class="dnote">⚠ 정량 지표는 낮지만(${c.risk_score.toFixed(2)}) 맥락상 정황 후보 ${c.subtle_evidence.length}건이 관측돼 <b>'사람 검토 필요' 큐</b>로 분류된 사건입니다. 폭언 없는 배제·따돌림은 숫자로 잘 드러나지 않습니다.</div>`:'';
+  const ev=c.key_evidence.length?c.key_evidence.map(e=>`<div class="ev2"><div class="m">${fmt(e.ts)} · ${esc(e.speaker)} · #${e.idx}</div><div class="q">${esc(e.text)}</div><div class="tags">${e.reasons.map(r=>`<span class="tg">${esc(r)}</span>`).join('')}</div></div>`).join(''):'<div class="dnote" style="color:var(--fg-3);background:var(--soft);border-color:var(--line)">임계치를 초과하는 발화가 관측되지 않았습니다.</div>';
+  return `<div class="chead"><div><div class="ct">${esc(c.room)}</div>
+      <div class="cm">${fmt(c.period_start)}–${fmt(c.period_end)} · ${c.span_days}일 · 메시지 ${c.n_messages}건 · 참여자 ${c.n_speakers}명<br>행위 의심자 <b>${esc(c.actor)}</b> → 피해 의심 <b>${esc(c.subject||'—')}</b></div></div>
+    <div class="cs"><div class="big" style="color:${col(c.risk_label)}">${c.risk_score.toFixed(2)}</div>
+      <span class="dpill ${pc(c.risk_label)}" style="display:inline-block;margin-top:5px">${c.risk_label}</span>
+      <div class="cm" style="margin-top:8px">우선순위 <b>${c.priority.toFixed(2)}</b></div></div></div>
+    <div class="sec2" style="margin-top:18px">직장 내 괴롭힘 성립 3요건<div class="sd">근로기준법 제76조의2 — 세 요건이 함께 충족되어야 성립. 성립 여부는 판정하지 않습니다.</div></div>
+    <div class="rqgrid">${c.blocks.map(reqCard).join('')}</div>
+    ${flagBox}${rev}
+    <div class="sec2">핵심 증거 발화 · ${c.key_evidence.length}건<div class="sd">독성·시간외 지시·질책·별건 위반 신호가 강한 순으로 자동 추출.</div></div>
+    ${ev}`;
+}
+function renderMulti(cases){
+  cases.sort((a,b)=>b.priority-a.priority);
+  const high=cases.filter(c=>c.risk_label==='높음').length;
+  const flags=cases.reduce((a,c)=>a+Object.keys(c.law_flags).length,0);
+  const rev=cases.filter(c=>c.needs_human_review).length;
+  const rows=cases.map((c,i)=>`<tr data-i="${i}"${i===0?' class="sel"':''}>
+    <td class="mono" style="color:var(--fg-4)">${i+1}</td>
+    <td class="nm">${esc(c.room)}<small>${esc(c.actor)} → ${esc(c.subject||'—')}</small></td>
+    <td><span class="dbar"><i style="width:${(c.priority*100).toFixed(0)}%"></i></span><span class="dsc">${c.priority.toFixed(2)}</span></td>
+    <td><span class="dpill ${pc(c.risk_label)}">${c.risk_label}</span></td>
+    <td>${Object.keys(c.law_flags).length?`<span class="dflag">별건 ${Object.keys(c.law_flags).length}</span>`:'<span style="color:var(--fg-4)">—</span>'}</td>
+    <td class="mono" style="color:var(--fg-3)">${c.key_evidence.length}</td></tr>`).join('');
+  const html=`<div class="sec2" style="margin-top:4px">조사 우선순위 · ${cases.length}건</div>
+    <div class="dkpi"><div class="k"><span>분석 사건</span><b>${cases.length} 건</b></div><div class="k"><span>고위험</span><b>${high} 건</b></div><div class="k"><span>별건 위반 단서</span><b>${flags} 건</b></div><div class="k"><span>검토 필요</span><b>${rev} 건</b></div></div>
+    <table class="dtable"><thead><tr><th></th><th>사건</th><th>조사 우선순위</th><th>판정</th><th>별건</th><th>증거</th></tr></thead><tbody id="mrows">${rows}</tbody></table>
+    <div id="one">${renderOne(cases[0])}</div>`;
+  document.getElementById('appResult').innerHTML=html;
+  document.querySelectorAll('#mrows tr').forEach(tr=>tr.addEventListener('click',()=>{
+    document.querySelectorAll('#mrows tr').forEach(x=>x.classList.remove('sel'));
+    tr.classList.add('sel'); document.getElementById('one').innerHTML=renderOne(cases[+tr.dataset.i]);
+  }));
+}
+function busy(msg){document.getElementById('appResult').innerHTML='<div class="busy">'+msg+'</div>';}
+function runOne(raw,name){ try{ const c=window.ChamEngine.analyze(raw,{maskNames:false,name}); document.getElementById('appResult').innerHTML=renderOne(c);}catch(err){ document.getElementById('appResult').innerHTML='<div class="dnote">'+esc(err.message||err)+'</div>'; } }
+async function loadDemo(i){ busy('분석 중…'); try{ const r=await fetch('demo/'+DEMOS[i].f); runOne(await r.text(), DEMOS[i].t);}catch(e){busy('데모 파일을 불러오지 못했습니다.');} }
+async function loadAll(){ busy('5건 분석 중…'); try{ const cs=[]; for(const d of DEMOS){ const r=await fetch('demo/'+d.f); const c=window.ChamEngine.analyze(await r.text(),{maskNames:false,name:d.t}); cs.push(c);} renderMulti(cs);}catch(e){busy('분석 중 오류가 발생했습니다.');} }
+function onFile(inp){ const f=inp.files&&inp.files[0]; if(!f)return; busy('분석 중…'); const rd=new FileReader(); rd.onload=()=>runOne(rd.result,f.name); rd.onerror=()=>busy('파일을 읽지 못했습니다.'); rd.readAsText(f,'utf-8'); }
+function buildApp(){
+  document.getElementById('appBody').innerHTML=`<div class="app">
+    <div class="app-head"><h3>참지마요 분석</h3><div class="sub">카톡 대화 .txt를 올리거나 데모 사건으로 바로 체험하세요. 모든 분석은 이 브라우저 안에서 실행됩니다.</div></div>
+    <div class="app-controls">
+      <label class="uploader">＋ 카톡 .txt 업로드<input type="file" accept=".txt,text/plain" hidden onchange="onFile(this)"></label>
+      <span class="csep">또는 데모</span>
+      ${DEMOS.map((d,i)=>`<button class="chip" onclick="loadDemo(${i})">${esc(d.t)}</button>`).join('')}
+      <button class="chip alt" onclick="loadAll()">데모 5건 우선순위 ▸</button>
+    </div>
+    <div id="appResult"><div class="empty2">사건을 선택하거나 파일을 올리면 결과가 여기에 표시됩니다.</div></div>
+  </div>`;
+}
 function openApp(e){if(e)e.preventDefault();
-  const m=document.getElementById('appModal'), f=document.getElementById('appFrame');
-  if(!f.getAttribute('src'))f.setAttribute('src',APP_URL);
-  m.classList.add('open');m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
-function closeApp(){const m=document.getElementById('appModal');
-  m.classList.remove('open');m.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+  const b=document.getElementById('appBody'); if(!b.dataset.built){buildApp();b.dataset.built='1';}
+  const m=document.getElementById('appModal'); m.classList.add('open');m.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+function closeApp(){const m=document.getElementById('appModal'); m.classList.remove('open');m.setAttribute('aria-hidden','true');document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeApp();});
 document.getElementById('appModal').addEventListener('click',e=>{if(e.target.id==='appModal')closeApp();});
 </script>
