@@ -442,6 +442,11 @@ footer{padding:44px 0 60px;border-top:1px solid var(--line);color:var(--fg-3);fo
 .ev2 .q{font-size:14px;color:var(--fg);line-height:1.6;white-space:pre-wrap}
 .ev2 .tags{margin-top:7px;display:flex;gap:5px;flex-wrap:wrap}
 .ev2 .tg{font-size:10.5px;font-weight:700;background:#FFE7E7;color:#D23;border-radius:6px;padding:2px 7px}
+.dlbar{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.dlbtn{background:var(--accent);color:#fff;border:0;border-radius:9px;padding:9px 15px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:.14s}
+.dlbtn:hover{background:var(--accent-ink)}
+.dlbtn.sec{background:var(--soft);color:var(--fg);border:1px solid var(--line-2)}
+.dlbtn.sec:hover{background:var(--bg);border-color:var(--fg-4)}
 </style>
 <div id="appModal" class="app-modal" aria-hidden="true">
   <div class="app-modal-bar">
@@ -454,11 +459,18 @@ footer{padding:44px 0 60px;border-top:1px solid var(--line);color:var(--fg-3);fo
 </div>
 
 <script src="engine.js"></script>
+<script src="report.js"></script>
 <script>
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 const DEMOS=[{t:'간호사 태움',f:'demo0.txt'},{t:'사무직 상사 폭언',f:'demo1.txt'},{t:'소규모 사장 갑질(단톡)',f:'demo2.txt'},{t:'정상업무(대조군)',f:'demo3.txt'},{t:'교묘한 따돌림',f:'demo4.txt'}];
+let CUR=null;
+function dl(kind){ if(!CUR||!window.ChamReport)return;
+  const md=kind==='inspector'?window.ChamReport.inspector(CUR):window.ChamReport.complaint(CUR,{});
+  const name=(CUR.case_id||'case')+(kind==='inspector'?'_증거분석보고서.md':'_진정서초안.md');
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([md],{type:'text/markdown;charset=utf-8'})); a.download=name;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); }
 const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const pc=l=>l==='높음'?'h':l==='중간'?'m':'n';
 const col=l=>l==='높음'?'#D23':l==='중간'?'#B5730A':'#8B95A1';
@@ -467,7 +479,7 @@ const fmt=d=>d.getFullYear()+'.'+two(d.getMonth()+1)+'.'+two(d.getDate())+' '+tw
 
 function reqCard(b){
   const c=b.score>=.6?'#C1121F':b.score>=.38?'#E36414':b.score>=.2?'#5C6B73':'#8D99AE';
-  const rows=b.metrics.map(m=>`<div class="mrow"><span>${esc(m[0])}</span><b>${esc(m[1])}</b></div>`).join('');
+  const rows=b.metrics.map(m=>`<div class="mrow"><span>${esc(m.label)}</span><b>${esc(m.display)}</b></div>`).join('');
   return `<div class="rqcard"><div class="rc">요건 ${b.code[1]}</div><h5>${esc(b.title)}</h5>
     <div class="rs" style="color:${c}">${b.score.toFixed(2)}</div>
     <div class="dbar" style="width:100%"><i style="width:${(b.score*100).toFixed(0)}%;background:${c}"></i></div>${rows}</div>`;
@@ -482,6 +494,7 @@ function renderOne(c){
     <div class="cs"><div class="big" style="color:${col(c.risk_label)}">${c.risk_score.toFixed(2)}</div>
       <span class="dpill ${pc(c.risk_label)}" style="display:inline-block;margin-top:5px">${c.risk_label}</span>
       <div class="cm" style="margin-top:8px">우선순위 <b>${c.priority.toFixed(2)}</b></div></div></div>
+    <div class="dlbar"><button class="dlbtn" onclick="dl('inspector')">📄 증거 분석 보고서 (.md)</button><button class="dlbtn sec" onclick="dl('complaint')">✍ 진정서 초안 (.md)</button></div>
     <div class="sec2" style="margin-top:18px">직장 내 괴롭힘 성립 3요건<div class="sd">근로기준법 제76조의2 — 세 요건이 함께 충족되어야 성립. 성립 여부는 판정하지 않습니다.</div></div>
     <div class="rqgrid">${c.blocks.map(reqCard).join('')}</div>
     ${flagBox}${rev}
@@ -490,6 +503,7 @@ function renderOne(c){
 }
 function renderMulti(cases){
   cases.sort((a,b)=>b.priority-a.priority);
+  CUR=cases[0];
   const high=cases.filter(c=>c.risk_label==='높음').length;
   const flags=cases.reduce((a,c)=>a+Object.keys(c.law_flags).length,0);
   const rev=cases.filter(c=>c.needs_human_review).length;
@@ -507,11 +521,11 @@ function renderMulti(cases){
   document.getElementById('appResult').innerHTML=html;
   document.querySelectorAll('#mrows tr').forEach(tr=>tr.addEventListener('click',()=>{
     document.querySelectorAll('#mrows tr').forEach(x=>x.classList.remove('sel'));
-    tr.classList.add('sel'); document.getElementById('one').innerHTML=renderOne(cases[+tr.dataset.i]);
+    tr.classList.add('sel'); CUR=cases[+tr.dataset.i]; document.getElementById('one').innerHTML=renderOne(cases[+tr.dataset.i]);
   }));
 }
 function busy(msg){document.getElementById('appResult').innerHTML='<div class="busy">'+msg+'</div>';}
-function runOne(raw,name){ try{ const c=window.ChamEngine.analyze(raw,{maskNames:false,name}); document.getElementById('appResult').innerHTML=renderOne(c);}catch(err){ document.getElementById('appResult').innerHTML='<div class="dnote">'+esc(err.message||err)+'</div>'; } }
+function runOne(raw,name){ try{ const c=window.ChamEngine.analyze(raw,{maskNames:false,name}); CUR=c; document.getElementById('appResult').innerHTML=renderOne(c);}catch(err){ document.getElementById('appResult').innerHTML='<div class="dnote">'+esc(err.message||err)+'</div>'; } }
 async function loadDemo(i){ busy('분석 중…'); try{ const r=await fetch('demo/'+DEMOS[i].f); runOne(await r.text(), DEMOS[i].t);}catch(e){busy('데모 파일을 불러오지 못했습니다.');} }
 async function loadAll(){ busy('5건 분석 중…'); try{ const cs=[]; for(const d of DEMOS){ const r=await fetch('demo/'+d.f); const c=window.ChamEngine.analyze(await r.text(),{maskNames:false,name:d.t}); cs.push(c);} renderMulti(cs);}catch(e){busy('분석 중 오류가 발생했습니다.');} }
 function onFile(inp){ const f=inp.files&&inp.files[0]; if(!f)return; busy('분석 중…'); const rd=new FileReader(); rd.onload=()=>runOne(rd.result,f.name); rd.onerror=()=>busy('파일을 읽지 못했습니다.'); rd.readAsText(f,'utf-8'); }

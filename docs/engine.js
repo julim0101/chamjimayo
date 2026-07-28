@@ -113,6 +113,9 @@ function wavg(vals,ws){ let s=0,w=0; for(let i=0;i<vals.length;i++){s+=vals[i]*w
 function median(a){ if(!a.length) return NaN; const b=a.slice().sort((x,y)=>x-y); const n=b.length,m=n>>1; return n%2?b[m]:(b[m-1]+b[m])/2; }
 function stdSample(a){ if(a.length<2) return 0; const mu=mean(a); return Math.sqrt(a.reduce((s,x)=>s+(x-mu)*(x-mu),0)/(a.length-1)); }
 const uniq = a => Array.from(new Set(a));
+function disp(v,u){ if(u==="%") return (v*100).toFixed(1)+"%"; if(u==="회"||u==="일"||u==="건") return v.toFixed(0)+u; return v.toFixed(2)+u; }
+function mk(key,label,value,unit,note){ return {key,label,value,unit,note:note||"",display:disp(value,unit)}; }
+function hash6(s){ let h=0; for(let i=0;i<s.length;i++){ h=(h*31+s.charCodeAt(i))>>>0; } return ("000000"+h.toString(16).toUpperCase()).slice(-6); }
 
 /* ============================ 주석 ============================ */
 function annotate(msgs, maskNames){
@@ -142,6 +145,7 @@ function annotate(msgs, maskNames){
     m.tox = lexToxicity(t);
     m.subtle = subtleHits(t);
     m.laws = laborHits(t);
+    m.nChars = t.length;
     m.gap_min = i===0 ? 0 : (A[i].ts - A[i-1].ts)/60000;
   }
   // burst (연속 동일화자)
@@ -216,9 +220,15 @@ function req1(A, actor, subject){
   const sMed=median(S.filter(x=>x.gap_min>=0&&x.gap_min<=240).map(x=>x.gap_min));
   const aMed=median(Ax.filter(x=>x.gap_min>=0&&x.gap_min<=240).map(x=>x.gap_min));
   const latency=(isNaN(sMed)||isNaN(aMed))?0:(aMed-sMed);
+  const totC=A.reduce((s,x)=>s+x.nChars,0); const cs=totC?Ax.reduce((s,x)=>s+x.nChars,0)/totC:0;
   const score=wavg([norm(ms,.5,.85),norm(dir_gap,.05,.4),norm(apo_gap,.05,.35),norm(burst_ratio,.1,.5),norm(latency,0,60)],[.3,.25,.2,.15,.1]);
   return {code:"R1",title:"지위 또는 관계의 우위",basis:"근로기준법 제76조의2 — 「직장에서의 지위 또는 관계 등의 우위를 이용하여」",score,
-    metrics:[["발화 독점률(건수)",(ms*100).toFixed(1)+"%"],["지시 발화 비대칭",(dir_gap*100).toFixed(1)+"%"],["사과·수용 비대칭",(apo_gap*100).toFixed(1)+"%"],["일방적 연속 발화",(burst_ratio*100).toFixed(1)+"%"],["응답 지연 격차",latency.toFixed(0)+"분"]]};
+    metrics:[mk("speech_share","발화 독점률 (건수)",ms,"%",`전체 ${total}건 중 ${Ax.length}건을 ${actor} 발화`),
+      mk("char_share","발화 독점률 (분량)",cs,"%","글자 수 기준 점유율"),
+      mk("directive_gap","지시 발화 비대칭",dir_gap,"%",`${actor} ${(a_dir*100).toFixed(0)}% vs 상대 ${(s_dir*100).toFixed(0)}%`),
+      mk("apology_gap","사과·수용 표현 비대칭",apo_gap,"%",`대상자 ${(s_apo*100).toFixed(0)}% vs ${actor} ${(a_apo*100).toFixed(0)}%`),
+      mk("burst_ratio","일방적 연속 발화 비율",burst_ratio,"%","상대 응답 없이 3회 이상 연속 발화"),
+      mk("latency_gap","응답 지연 격차",latency,"분","대상자가 더 빨리 응답할수록 응답 압박이 크다")]};
 }
 function req2(A, actor){
   const Ax=A.filter(m=>m.speaker===actor);
@@ -238,7 +248,12 @@ function req2(A, actor){
   const rd=offDemand.length/weeks, rn=night.length/weeks, rh=holi.length/weeks;
   const score=wavg([norm(off_ratio,.10,.55),norm(rd,.3,4),norm(rn,.2,3),norm(rh,.2,2.5),norm(periodicity,.05,.40),norm(regularity,.20,.80)],[.25,.25,.15,.12,.13,.10]);
   return {code:"R2",title:"업무상 적정범위를 넘는 행위",basis:"근로기준법 제76조의2 — 「업무상 적정범위를 넘어」",score,
-    metrics:[["근무시간 외 발화",(off_ratio*100).toFixed(1)+"%"],["주당 시간외 지시·응답요구",rd.toFixed(1)+"회/주"],["주당 심야 연락",rn.toFixed(1)+"회/주"],["주당 휴일 연락",rh.toFixed(1)+"회/주"],["시간외 발생일 비율",(periodicity*100).toFixed(1)+"%"],["반복 주기 규칙성",regularity.toFixed(2)]]};
+    metrics:[mk("offhours_ratio","근무시간 외 발화 비율",off_ratio,"%",`${actor}의 발화 ${Ax.length}건 중 ${off.length}건이 근무시간 외`),
+      mk("offhours_demand_rate","주당 시간외 지시·응답요구",rd,"회/주",`관찰 ${span}일간 총 ${offDemand.length}건`),
+      mk("night_rate","주당 심야(22–06시) 연락",rn,"회/주",`총 ${night.length}건`),
+      mk("holiday_rate","주당 휴일 연락",rh,"회/주",`총 ${holi.length}건`),
+      mk("periodicity","시간외 연락 발생일 비율",periodicity,"%",`관찰 ${span}일 중 ${offDays.length}일에 발생`),
+      mk("regularity","반복 주기의 규칙성",regularity,"","간격의 변동이 작을수록 일회성이 아닌 지속적 패턴")]};
 }
 function req3(A, actor, subject, sel){
   const Ax=A.filter(m=>m.speaker===actor);
@@ -254,8 +269,14 @@ function req3(A, actor, subject, sel){
   const ws=[.35,.2,.2,.1,.15];
   if(sel && sel.applicable){ parts.push(norm(sel.gap,.1,.5)); ws.push(.25); }
   const score=wavg(parts,ws);
-  const metrics=[["모욕·독성 발화 밀도",(density*100).toFixed(1)+"%"],["평균 독성 확률",mean_tox.toFixed(2)],["주당 질책성 추궁",r_reb.toFixed(1)+"회/주"],["제3자 노출",pub?"있음":"없음"],["대상자 시간외 응답부담",(burden*100).toFixed(1)+"%"]];
-  if(sel&&sel.applicable) metrics.push(["선택적 무응답 격차",(sel.gap*100).toFixed(0)+"%p"]);
+  const subtleN=Ax.filter(x=>x.subtle.length>0).length;
+  const metrics=[mk("toxic_density","모욕·독성 발화 밀도",density,"%",`${actor}의 발화 ${Ax.length}건 중 ${toxic.length}건이 독성 임계치 초과`),
+    mk("toxic_mean","평균 독성 확률",mean_tox,"","0에 가까울수록 중립, 1에 가까울수록 공격적"),
+    mk("rebuke_rate","주당 질책성 추궁",r_reb,"회/주",`총 ${rebuke.length}건`),
+    mk("public_exposure","제3자 노출 여부",pub?1:0,"",`참여자 ${nsp}명 — 공개적 질책은 정신적 고통을 가중`),
+    mk("subject_offhours_burden","대상자의 시간외 응답 부담",burden,"%",""),
+    mk("subtle_count","정황 후보 발화 (Tier 3)",subtleN,"건","배제·묵살·가스라이팅 의심 — 최종 판단은 사람")];
+  if(sel&&sel.applicable) metrics.push(mk("selective_ignore","선택적 무응답 격차",sel.gap,"%",`대상자 응답률 ${(sel.subject_rate*100).toFixed(0)}% vs 동료 평균 ${(sel.peer_rate*100).toFixed(0)}%`));
   return {code:"R3",title:"신체적·정신적 고통 또는 근무환경 악화",basis:"근로기준법 제76조의2 — 「신체적·정신적 고통을 주거나 근무환경을 악화시키는 행위」",score,metrics};
 }
 
@@ -306,15 +327,25 @@ function analyze(raw, opts){
   const subtle=subtleEvidence(A,actor);
   const key=keyEvidence(A,actor);
   const needsReview = risk<0.38 && subtle.length>=3;
+  const rs={}; blocks.forEach(b=>rs[b.code]=b.score);
+  let reviewReason="";
+  if(needsReview){
+    const tags=Array.from(new Set(subtle.flatMap(e=>e.tags))).sort();
+    reviewReason=`정량 지표는 낮으나(${risk.toFixed(2)}) 정황 후보 ${subtle.length}건 관측 — ${tags.join(', ')}`;
+    if(sel.applicable && sel.gap>=0.15)
+      reviewReason+=` / 선택적 무응답 격차 ${(sel.gap*100).toFixed(0)}%p(대상자 ${(sel.subject_rate*100).toFixed(0)}% vs 동료 ${(sel.peer_rate*100).toFixed(0)}%)`;
+  }
   const tsAll=A.map(m=>m.ts); const start=new Date(Math.min(...tsAll)), end=new Date(Math.max(...tsAll));
   return {
+    case_id:"CJ-"+hash6(raw),
     room:meta.room||opts.name||"대화", source:opts.name||"",
     actor, subject, n_messages:A.length, n_speakers:uniq(A.map(m=>m.speaker)).length,
     period_start:start, period_end:end, span_days:Math.floor((end-start)/86400000)+1,
     blocks, risk_score:risk, risk_label:label, risk_color:color,
     priority, priority_reasons:reasons, law_flags:flags,
     key_evidence:key, subtle_evidence:subtle,
-    needs_human_review:needsReview,
+    needs_human_review:needsReview, review_reason:reviewReason,
+    requirement_scores:rs, tox_backend:"lexicon", rag_backend:"—",
     all_requirements_met: blocks.every(b=>b.score>=0.35),
   };
 }
