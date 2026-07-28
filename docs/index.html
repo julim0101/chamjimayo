@@ -447,6 +447,14 @@ footer{padding:44px 0 60px;border-top:1px solid var(--line);color:var(--fg-3);fo
 .dlbtn:hover{background:var(--accent-ink)}
 .dlbtn.sec{background:var(--soft);color:var(--fg);border:1px solid var(--line-2)}
 .dlbtn.sec:hover{background:var(--bg);border-color:var(--fg-4)}
+.cform{margin-top:10px;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:16px}
+.cf-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cf-row label{display:flex;flex-direction:column;font-size:11.5px;font-weight:600;color:var(--fg-3);gap:5px}
+.cf-row input{border:1px solid var(--line-2);border-radius:8px;padding:9px 11px;font-size:13px;color:var(--fg);font-family:inherit;background:var(--bg)}
+.cf-row input:focus{outline:none;border-color:var(--accent)}
+.cf-act{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+.cf-hint{font-size:11.5px;color:var(--fg-4)}
+@media(max-width:640px){.cf-row{grid-template-columns:1fr}}
 </style>
 <div id="appModal" class="app-modal" aria-hidden="true">
   <div class="app-modal-bar">
@@ -466,11 +474,15 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 const DEMOS=[{t:'간호사 태움',f:'demo0.txt'},{t:'사무직 상사 폭언',f:'demo1.txt'},{t:'소규모 사장 갑질(단톡)',f:'demo2.txt'},{t:'정상업무(대조군)',f:'demo3.txt'},{t:'교묘한 따돌림',f:'demo4.txt'}];
 let CUR=null;
-function dl(kind){ if(!CUR||!window.ChamReport)return;
-  const md=kind==='inspector'?window.ChamReport.inspector(CUR):window.ChamReport.complaint(CUR,{});
+function toggleComplaint(){ const f=document.getElementById('cform'); if(f) f.style.display=(f.style.display==='none'?'block':'none'); }
+function dl(kind){ if(!CUR){alert('먼저 사건을 분석해 주세요.');return;} if(!window.ChamReport){alert('리포트 모듈 로딩 중입니다. 잠시 후 다시 시도해 주세요.');return;}
+  let md;
+  if(kind==='inspector'){ md=window.ChamReport.inspector(CUR); }
+  else { const g=id=>{const e=document.getElementById(id); return e&&e.value.trim()?e.value.trim():undefined;};
+    md=window.ChamReport.complaint(CUR,{complainant:g('ci_name'),workplace:g('ci_work'),office:g('ci_office')}); }
   const name=(CUR.case_id||'case')+(kind==='inspector'?'_증거분석보고서.md':'_진정서초안.md');
   const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([md],{type:'text/markdown;charset=utf-8'})); a.download=name;
-  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); }
+  document.body.appendChild(a); a.click(); setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href);},1500); }
 const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const pc=l=>l==='높음'?'h':l==='중간'?'m':'n';
 const col=l=>l==='높음'?'#D23':l==='중간'?'#B5730A':'#8B95A1';
@@ -494,7 +506,16 @@ function renderOne(c){
     <div class="cs"><div class="big" style="color:${col(c.risk_label)}">${c.risk_score.toFixed(2)}</div>
       <span class="dpill ${pc(c.risk_label)}" style="display:inline-block;margin-top:5px">${c.risk_label}</span>
       <div class="cm" style="margin-top:8px">우선순위 <b>${c.priority.toFixed(2)}</b></div></div></div>
-    <div class="dlbar"><button class="dlbtn" onclick="dl('inspector')">📄 증거 분석 보고서 (.md)</button><button class="dlbtn sec" onclick="dl('complaint')">✍ 진정서 초안 (.md)</button></div>
+    <div class="dlbar"><button class="dlbtn" onclick="dl('inspector')">📄 증거 분석 보고서 (.md)</button><button class="dlbtn sec" onclick="toggleComplaint()">✍ 진정서 초안 만들기</button></div>
+    <div id="cform" class="cform" style="display:none">
+      <div class="cf-row">
+        <label>진정인 성명<input id="ci_name" placeholder="예: 홍길동"></label>
+        <label>사업장명<input id="ci_work" placeholder="예: ○○병원"></label>
+        <label>관할 지방고용노동청<input id="ci_office" placeholder="예: 서울지방고용노동청"></label>
+      </div>
+      <div class="cf-act"><button class="dlbtn" onclick="dl('complaint')">진정서 초안 다운로드 (.md)</button>
+        <span class="cf-hint">비워도 됩니다 — 빈 칸은 (성명) 등으로 표시돼요.</span></div>
+    </div>
     <div class="sec2" style="margin-top:18px">직장 내 괴롭힘 성립 3요건<div class="sd">근로기준법 제76조의2 — 세 요건이 함께 충족되어야 성립. 성립 여부는 판정하지 않습니다.</div></div>
     <div class="rqgrid">${c.blocks.map(reqCard).join('')}</div>
     ${flagBox}${rev}
