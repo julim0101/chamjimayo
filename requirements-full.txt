@@ -3,7 +3,8 @@
 # 메모리가 1GB로 제한된 Streamlit Community Cloud에서는 requirements-lite.txt 를 쓰세요.
 
 # --- UI
-streamlit>=1.36,<2
+streamlit>=1.58,<2
+altair>=5.0
 
 # --- 데이터 처리
 pandas>=2.0

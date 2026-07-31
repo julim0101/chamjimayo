@@ -1,9 +1,67 @@
+# 참지마요 — 테마
+#
+# HTML/CSS 주입 없이 config.toml 만으로 외형을 정의한다.
+# 팔레트는 소개 페이지(docs/index.html)의 :root 토큰과 동일하게 맞췄다.
+# 색을 바꿀 땐 두 파일을 함께 고칠 것.
+#
+# 다크가 기본이며, 사용자는 우상단 설정 메뉴에서 라이트로 전환할 수 있다.
+# 긴 법령 조문·증거 인용문을 오래 읽어야 하는 감독관을 위해 라이트도 유지한다.
+#
+# 요구 버전: streamlit >= 1.53 (theme.light/dark 분리, borderColor, baseRadius)
+
 [theme]
-primaryColor = "#1D3557"
+base = "dark"
+# 공백이 있는 패밀리명은 내부 따옴표 필요. 마지막은 Streamlit 내장 폰트로 폴백.
+font = "'Pretendard Variable', sans-serif"
+# 내장 Source Code 사용 — 외부 요청이 없어 개인정보 전송 이슈도 없다.
+codeFont = "monospace"
+baseRadius = "medium"
+chartCategoricalColors = [
+  "#5563F0", "#7C6BF7", "#C6F24E", "#FFB020",
+  "#FF5A5A", "#5ED39A", "#828DA0",
+]
+
+[[theme.fontFaces]]
+family = "Pretendard Variable"
+url = "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2"
+weight = "45 920"
+style = "normal"
+
+# ── 다크 (기본) ─────────────────────────────────────────
+[theme.dark]
+primaryColor = "#5563F0"
+backgroundColor = "#12141F"
+secondaryBackgroundColor = "#1A1F2E"
+textColor = "#E7EAF4"
+linkColor = "#9AA7FF"
+borderColor = "#282E3D"
+codeBackgroundColor = "#161B26"
+dataframeHeaderBackgroundColor = "#1D212B"
+showWidgetBorder = true
+
+[theme.dark.sidebar]
+backgroundColor = "#181C25"
+secondaryBackgroundColor = "#20252F"
+textColor = "#C3CAD8"
+borderColor = "#282E3D"
+
+# ── 라이트 (설정 메뉴에서 전환) ──────────────────────────
+[theme.light]
+primaryColor = "#5563F0"
 backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F5F7FA"
-textColor = "#1F2933"
-font = "sans serif"
+secondaryBackgroundColor = "#F6F7FB"
+textColor = "#171C26"
+linkColor = "#3B48D4"
+borderColor = "#E6E9F0"
+codeBackgroundColor = "#F6F7FB"
+dataframeHeaderBackgroundColor = "#EEF0F7"
+showWidgetBorder = true
+
+[theme.light.sidebar]
+backgroundColor = "#F6F7FB"
+secondaryBackgroundColor = "#EEF0F7"
+textColor = "#4B5567"
+borderColor = "#E6E9F0"
 
 [server]
 maxUploadSize = 30

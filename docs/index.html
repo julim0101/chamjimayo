@@ -58,48 +58,110 @@ a{color:inherit;text-decoration:none}
   linear-gradient(180deg,#0C0F16 0%,#12141F 100%);color:#fff;overflow:hidden}
 .hero::after{content:"";position:absolute;inset:0;
   background:radial-gradient(600px 300px at 50% 120%,rgba(85,99,240,.25),transparent 70%);pointer-events:none}
-.hero-in{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:96px 24px 110px;
-  display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero-in{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:88px 24px 0;
+  display:flex;flex-direction:column;align-items:center;text-align:center}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.02em;
   color:#C9CEFF;background:rgba(85,99,240,.16);border:1px solid rgba(124,107,247,.35);
   padding:7px 14px;border-radius:100px;margin-bottom:24px}
 .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
-.hero h1{font-size:clamp(34px,4.4vw,54px);font-weight:800;letter-spacing:-.045em;line-height:1.12;color:#fff}
+.hero h1{font-size:clamp(36px,5.4vw,62px);font-weight:800;letter-spacing:-.045em;line-height:1.1;color:#fff}
 .hero h1 em{font-style:normal;background:linear-gradient(120deg,#9AA7FF,#C6F24E);
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{margin-top:22px;font-size:17.5px;line-height:1.7;color:#B7BECE;max-width:30em}
-.hero-cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap}
-.hero-meta{margin-top:30px;display:flex;gap:26px;flex-wrap:wrap}
+.hero p{margin-top:22px;font-size:17.5px;line-height:1.7;color:#B7BECE;max-width:34em}
+.hero-cta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.hero-meta{margin-top:28px;display:flex;gap:26px;flex-wrap:wrap;justify-content:center}
 .hero-meta div span{display:block;font-size:12.5px;color:#7F8AA3}
 .hero-meta div b{font-family:var(--mono);font-size:22px;font-weight:700;color:#fff;letter-spacing:-.02em}
 
-/* product mockup */
-.mock{position:relative;background:linear-gradient(180deg,#1A1F2E,#141824);
-  border:1px solid rgba(255,255,255,.10);border-radius:var(--rl);padding:20px;
-  box-shadow:var(--sh-lg);transform:perspective(1400px) rotateY(-9deg) rotateX(3deg)}
-.mock-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.mock-top .t{font-size:13px;font-weight:700;color:#E7EAF4}
-.mock-top .ch{font-size:11px;color:#8993AC;font-family:var(--mono);background:rgba(255,255,255,.05);
-  padding:4px 9px;border-radius:20px}
-.rrow{display:grid;grid-template-columns:20px 1fr 62px 46px;align-items:center;gap:12px;
-  padding:12px 10px;border-radius:11px;margin-bottom:6px;background:rgba(255,255,255,.02)}
-.rrow.hot{background:linear-gradient(90deg,rgba(198,242,78,.10),rgba(255,255,255,.02) 70%);
-  border:1px solid rgba(198,242,78,.2)}
-.rrow .rk{font-family:var(--mono);font-weight:700;font-size:13px;color:#5B647C}
-.rrow.hot .rk{color:var(--lime)}
-.rrow .nm{font-size:13px;font-weight:650;color:#E7EAF4}
-.rrow .nm span{display:block;font-family:var(--mono);font-size:10.5px;color:#6B748D;font-weight:500;margin-top:2px}
-.bar{height:5px;background:rgba(255,255,255,.08);border-radius:9px;overflow:hidden}
+/* 한 문장 — 왜 참지마요여야 하는가 */
+.thesis{margin-top:30px;max-width:33em;font-size:15px;line-height:1.75;color:#8E98B0;
+  border-top:1px solid rgba(255,255,255,.09);padding-top:20px}
+.thesis b{color:#C6F24E;font-weight:700}
+
+/* ── 제품 목업 : 브라우저 크롬 + 감독관 콘솔 ── */
+.mock-wrap{position:relative;z-index:2;width:min(100%,1000px);margin:64px auto -140px;padding:0 24px}
+.mock{background:#14171F;border:1px solid rgba(255,255,255,.10);border-top-left-radius:14px;
+  border-top-right-radius:14px;overflow:hidden;box-shadow:0 -18px 70px rgba(0,0,0,.42),var(--sh-lg);text-align:left}
+
+/* 타이틀바 */
+.mk-bar{display:flex;align-items:center;gap:12px;background:#1D212B;
+  border-bottom:1px solid rgba(255,255,255,.06);padding:9px 14px}
+.mk-dots{display:flex;gap:6px}
+.mk-dots i{width:10px;height:10px;border-radius:50%;display:block}
+.mk-url{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;background:#14171F;
+  border-radius:7px;padding:4px 14px;font-family:var(--mono);font-size:10.5px;color:#7E88A0;max-width:320px;margin:0 auto}
+.mk-url .lk{width:5px;height:5px;border-radius:50%;background:#5ED39A}
+
+/* 본체 */
+.mk-body{display:grid;grid-template-columns:186px 1fr;min-height:376px}
+.mk-side{border-right:1px solid rgba(255,255,255,.06);background:#181C25;padding:14px 12px}
+.mk-brand{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;color:#E7EAF4;
+  letter-spacing:-.02em;margin-bottom:16px}
+.mk-brand i{width:16px;height:16px;border-radius:5px;display:block;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+.mk-lab{font-size:9px;font-weight:700;letter-spacing:.11em;color:#5B647C;margin:14px 0 7px}
+.mk-nav{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#8993AC;
+  padding:6px 8px;border-radius:7px;margin-bottom:2px}
+.mk-nav.on{background:rgba(85,99,240,.16);color:#C9CEFF;font-weight:650}
+.mk-nav .ic{width:13px;text-align:center;opacity:.8}
+.mk-case{display:flex;align-items:center;gap:8px;font-size:11px;color:#7E88A0;padding:5px 8px;
+  border-radius:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mk-case i{width:6px;height:6px;border-radius:50%;flex:none}
+
+.mk-main{padding:16px 18px}
+.mk-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:14px}
+.mk-head h4{font-size:14px;font-weight:750;color:#fff;letter-spacing:-.02em}
+.mk-head span{display:block;margin-top:3px;font-family:var(--mono);font-size:10px;color:#6B748D}
+.mk-btn{font-size:10.5px;font-weight:700;color:#fff;background:var(--accent);
+  padding:6px 12px;border-radius:8px;box-shadow:0 4px 12px rgba(85,99,240,.4)}
+
+/* 4칸 지표 */
+.mk-kpi{display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);border-radius:11px;overflow:hidden;margin-bottom:16px}
+.mk-kpi div{padding:12px 14px;border-right:1px solid rgba(255,255,255,.06)}
+.mk-kpi div:last-child{border-right:none}
+.mk-kpi .k{font-size:8.5px;font-weight:700;letter-spacing:.1em;color:#5B647C}
+.mk-kpi .v{font-family:var(--mono);font-size:21px;font-weight:700;color:#fff;letter-spacing:-.03em;margin-top:5px}
+.mk-kpi .v em{font-style:normal;font-size:11px;color:#7E88A0;margin-left:3px;font-weight:500}
+.mk-kpi .v.hot{color:var(--lime)}
+
+/* 우선순위 표 */
+.mk-t{font-size:10.5px;font-weight:700;color:#8993AC;margin-bottom:8px;letter-spacing:-.01em}
+.rrow{display:grid;grid-template-columns:22px 1fr 74px 44px 62px;align-items:center;gap:11px;
+  padding:9px 10px;border-radius:9px;margin-bottom:4px;background:rgba(255,255,255,.02)}
+.rrow.hot{background:linear-gradient(90deg,rgba(255,90,90,.12),rgba(255,255,255,.02) 70%);
+  border:1px solid rgba(255,90,90,.24)}
+.rrow.watch{background:linear-gradient(90deg,rgba(198,242,78,.10),rgba(255,255,255,.02) 70%);
+  border:1px solid rgba(198,242,78,.24)}
+.rrow .rk{font-family:var(--mono);font-weight:700;font-size:11.5px;color:#5B647C}
+.rrow.hot .rk{color:#FF8A8A}
+.rrow.watch .rk{color:var(--lime)}
+.rrow .nm{font-size:12px;font-weight:650;color:#E7EAF4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rrow .nm span{display:block;font-family:var(--mono);font-size:9.5px;color:#6B748D;font-weight:500;margin-top:2px}
+.bar{height:4px;background:rgba(255,255,255,.08);border-radius:9px;overflow:hidden}
 .bar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#7C6BF7,#C6F24E)}
-.rrow .sc{font-family:var(--mono);font-weight:700;font-size:14px;text-align:right;color:#fff}
-.pill{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px}
+.bar i.h{background:linear-gradient(90deg,#FF5A5A,#FFB020)}
+.rrow .sc{font-family:var(--mono);font-weight:700;font-size:12.5px;text-align:right;color:#fff}
+.pill{font-size:9px;font-weight:700;padding:3px 7px;border-radius:20px;text-align:center;white-space:nowrap}
 .pill.h{background:rgba(255,90,90,.18);color:#FF8A8A}
 .pill.m{background:rgba(255,176,32,.16);color:#FFC661}
 .pill.n{background:rgba(255,255,255,.06);color:#8993AC}
-.mock-flag{margin-top:12px;font-size:11.5px;color:#C6F24E;background:rgba(198,242,78,.08);
-  border:1px solid rgba(198,242,78,.2);border-radius:10px;padding:9px 12px}
-@media(max-width:900px){.hero-in{grid-template-columns:1fr;gap:44px;padding:72px 24px 84px}
-  .mock{transform:none}}
+.pill.w{background:rgba(198,242,78,.16);color:var(--lime)}
+.mock-flag{margin-top:11px;font-size:10.5px;line-height:1.6;color:#C6F24E;background:rgba(198,242,78,.08);
+  border:1px solid rgba(198,242,78,.2);border-radius:9px;padding:9px 12px}
+.mock-flag b{color:#DCFF7A}
+
+@media(max-width:900px){
+  .hero-in{padding:64px 20px 0}
+  .mock-wrap{margin:44px auto -90px;padding:0 16px}
+  .mk-body{grid-template-columns:1fr;min-height:0}
+  .mk-side{display:none}
+  .mk-kpi{grid-template-columns:repeat(2,1fr)}
+  .mk-kpi div:nth-child(2){border-right:none}
+  .mk-kpi div:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.06)}
+  .rrow{grid-template-columns:20px 1fr 44px;gap:9px}
+  .rrow .bar,.rrow .pill{display:none}
+}
 
 /* ── SECTION SHELL ── */
 section{padding:92px 0}
@@ -201,49 +263,111 @@ footer{padding:44px 0 60px;border-top:1px solid var(--line);color:var(--fg-3);fo
 </div></nav>
 
 <!-- HERO -->
-<header class="hero"><div class="hero-in">
-  <div>
-    <div class="eyebrow"><span class="dot"></span>근로감독관 수사지원 · 직장 내 괴롭힘</div>
-    <h1>조사 착수 <em>전</em>,<br>어디부터 볼지<br>정해드립니다</h1>
-    <p>쏟아지는 직장 내 괴롭힘 신고를 근로기준법 제76조의2 성립요건으로 정량 분석해, 사건별 <b style="color:#E7EAF4">조사 우선순위</b>를 자동으로 산출합니다. 성립 여부는 판정하지 않고, 검토 순서만 제안합니다.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#" onclick="openApp(event)">시작하기 →</a>
-      <a class="btn btn-ghost" href="#how">작동 방식 보기</a>
-    </div>
-    <div class="hero-meta">
-      <div><b>29</b><span>내장 법령·지침</span></div>
-      <div><b>3요건</b><span>정량 분석</span></div>
-      <div><b>별건</b><span>위반 단서 포착</span></div>
-    </div>
+<header class="hero">
+<div class="hero-in">
+  <div class="eyebrow"><span class="dot"></span>근로감독관 수사지원 · 직장 내 괴롭힘</div>
+  <h1>조사 착수 <em>전</em>,<br>어디부터 볼지 정해드립니다</h1>
+  <p>쏟아지는 직장 내 괴롭힘 신고를 근로기준법 제76조의2 성립요건으로 정량 분석해, 사건별 <b style="color:#E7EAF4">조사 우선순위</b>를 자동으로 산출합니다. 성립 여부는 판정하지 않고, 검토 순서만 제안합니다.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#" onclick="openApp(event)">시작하기 →</a>
+    <a class="btn btn-ghost" href="#how">작동 방식 보기</a>
+  </div>
+  <div class="hero-meta">
+    <div><b>29</b><span>내장 법령·지침</span></div>
+    <div><b>3요건</b><span>정량 분석</span></div>
+    <div><b>별건</b><span>위반 단서 포착</span></div>
+  </div>
+  <p class="thesis">감독관에게 필요한 것은 더 많은 진술이 아니라 <b>더 명확한 근거</b>입니다.<br>참지마요는 신고 이전 단계에서 그 근거를 미리 갖춰둡니다.</p>
+</div>
+
+<!-- 제품 목업 : 감독관 콘솔 실화면 구조 -->
+<div class="mock-wrap">
+ <div class="mock">
+  <div class="mk-bar">
+    <span class="mk-dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></span>
+    <span class="mk-url"><span class="lk"></span>chamjimayo.streamlit.app</span>
   </div>
 
-  <!-- product mockup -->
-  <div class="mock">
-    <div class="mock-top"><span class="t">조사 우선순위</span><span class="ch">5건 분석 완료</span></div>
-    <div class="rrow hot">
-      <span class="rk">01</span>
-      <span class="nm">간호사 태움 사건<span>CASE-0417 · 메시지 1,240건</span></span>
-      <span class="bar"><i style="width:94%"></i></span>
-      <span class="sc">0.94</span>
+  <div class="mk-body">
+    <aside class="mk-side">
+      <div class="mk-brand"><i></i>참지마요</div>
+      <div class="mk-nav on"><span class="ic">▤</span>조사 우선순위</div>
+      <div class="mk-nav"><span class="ic">◫</span>성립요건 분석</div>
+      <div class="mk-nav"><span class="ic">§</span>법령 근거</div>
+      <div class="mk-nav"><span class="ic">◷</span>시간 패턴</div>
+      <div class="mk-nav"><span class="ic">▧</span>리포트</div>
+
+      <div class="mk-lab">분석된 사건</div>
+      <div class="mk-case"><i style="background:#FFB020"></i>에이블 디자인 업무방</div>
+      <div class="mk-case"><i style="background:#FF5A5A"></i>3병동 프리셉터방</div>
+      <div class="mk-case"><i style="background:#FF5A5A"></i>[마케팅팀] 강부장님</div>
+      <div class="mk-case"><i style="background:#C6F24E"></i>영업3팀 업무공유방</div>
+      <div class="mk-case"><i style="background:#5B647C"></i>[기획2팀] 이팀장님</div>
+    </aside>
+
+    <div class="mk-main">
+      <div class="mk-head">
+        <div>
+          <h4>근로감독관 콘솔</h4>
+          <span>5건 분석 완료 · 메시지 239건 · 0.24초</span>
+        </div>
+        <span class="mk-btn">리포트 생성</span>
+      </div>
+
+      <div class="mk-kpi">
+        <div><div class="k">분석 사건</div><div class="v">5<em>건</em></div></div>
+        <div><div class="k">고위험</div><div class="v hot">2<em>건</em></div></div>
+        <div><div class="k">3요건 충족</div><div class="v">3<em>건</em></div></div>
+        <div><div class="k">별건 위반 단서</div><div class="v">8<em>건</em></div></div>
+      </div>
+
+      <div class="mk-t">조사 우선순위 &nbsp;<span style="color:#5B647C;font-weight:500">괴롭힘 성립 가능성 + 별건 법위반의 중대성</span></div>
+
+      <div class="rrow hot">
+        <span class="rk">01</span>
+        <span class="nm">에이블 디자인 업무방<span>메시지 50건 · 별건 위반 4건</span></span>
+        <span class="bar"><i class="h" style="width:100%"></i></span>
+        <span class="sc">1.00</span>
+        <span class="pill m">중간</span>
+      </div>
+      <div class="rrow hot">
+        <span class="rk">02</span>
+        <span class="nm">3병동 프리셉터방<span>메시지 58건 · 별건 위반 2건</span></span>
+        <span class="bar"><i class="h" style="width:95%"></i></span>
+        <span class="sc">0.95</span>
+        <span class="pill h">높음</span>
+      </div>
+      <div class="rrow hot">
+        <span class="rk">03</span>
+        <span class="nm">[마케팅팀] 강부장님<span>메시지 55건 · 별건 위반 2건</span></span>
+        <span class="bar"><i class="h" style="width:95%"></i></span>
+        <span class="sc">0.95</span>
+        <span class="pill h">높음</span>
+      </div>
+      <div class="rrow watch">
+        <span class="rk">04</span>
+        <span class="nm">영업3팀 업무공유방<span>메시지 45건 · 정황 후보 6건</span></span>
+        <span class="bar"><i style="width:10%"></i></span>
+        <span class="sc">0.10</span>
+        <span class="pill w">검토 필요</span>
+      </div>
+      <div class="rrow">
+        <span class="rk">05</span>
+        <span class="nm">[기획2팀] 이팀장님<span>메시지 31건 · 대조군</span></span>
+        <span class="bar"><i style="width:6%"></i></span>
+        <span class="sc">0.06</span>
+        <span class="pill n">관측 없음</span>
+      </div>
+
+      <div class="mock-flag">⚠ <b>04번은 점수가 낮지만 사람의 검토가 필요합니다</b> — 폭언은 한 건도 없습니다. 다만 선택적 무응답 격차가 <b>22%p</b> 관측되었습니다(대상자 58% vs 동료 80%). 숫자로 드러나지 않는 배제·따돌림 유형입니다.</div>
     </div>
-    <div class="rrow">
-      <span class="rk">02</span>
-      <span class="nm">사장 갑질 단톡<span>CASE-0392 · 메시지 860건</span></span>
-      <span class="bar"><i style="width:78%"></i></span>
-      <span class="sc">0.78</span>
-    </div>
-    <div class="rrow">
-      <span class="rk">03</span>
-      <span class="nm">사무직 상사 폭언<span>CASE-0355 · 메시지 610건</span></span>
-      <span class="bar"><i style="width:61%"></i></span>
-      <span class="sc">0.61</span>
-    </div>
-    <div class="mock-flag">⚠ 별건 위반 단서 · 임금체불 2건 · 신고자 보복 1건 감지</div>
   </div>
-</div></header>
+ </div>
+</div>
+</header>
 
 <!-- STATS / PROBLEM -->
-<section class="stats" style="padding:56px 0"><div class="wrap">
+<section class="stats" style="padding:190px 0 56px"><div class="wrap">
   <div class="sec-head reveal" style="margin-bottom:36px">
     <div class="sec-tag">왜 필요한가</div>
     <h2>사건은 쏟아지는데, 볼 사람은 부족합니다</h2>
@@ -251,10 +375,14 @@ footer{padding:44px 0 60px;border-top:1px solid var(--line);color:var(--fg-3);fo
   <div class="stat-grid reveal">
     <div class="stat"><b>76조의2</b><span>근로기준법 성립 3요건 기반</span></div>
     <div class="stat"><b>다건</b><span>여러 신고를 한 번에 우선순위화</span></div>
-    <div class="stat"><b>5초</b><span>업로드 즉시 정량 지표 산출</span></div>
+    <div class="stat"><b>12초</b><span>5건 · 1,003개 메시지 분석 소요</span></div>
     <div class="stat"><b>폐쇄형</b><span>법령·지침만 쓰는 근거 검색</span></div>
   </div>
-  <p style="text-align:center;margin-top:26px;font-size:12.5px;color:var(--fg-4)">※ 근로감독관 1인당 담당 사건 수 등 실제 통계는 발표용으로 별도 삽입 권장</p>
+  <!-- TODO(8/3): 아래 문장의 [ ] 자리를 실측치로 교체.
+       측정 방법 — 동일 5건을 (a) 수기 검토 (b) 참지마요 로 각각 처리하고 소요시간 기록.
+       근거 없는 수치를 넣으면 심사에서 역효과이므로 측정 전까지 이 블록은 노출하지 말 것. -->
+  <p style="text-align:center;margin-top:26px;font-size:12.5px;color:var(--fg-4)">
+    ※ 감독관 1인당 담당 사건 수 · 수기 검토 대비 소요시간 절감치는 실측 후 삽입 예정</p>
 </div></section>
 
 <!-- HOW -->
